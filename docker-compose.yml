@@ -14,7 +14,7 @@ services:
       - DB_HOST=db
     volumes:
       - ./data/mysql/db:/var/lib/mysql
-
+############################################################################################################
   system_phpmyadmin:
     image: phpmyadmin
     container_name: system_myadmin
@@ -23,7 +23,7 @@ services:
       - '8013:80'
     environment:
       - PMA_HOST=db_cont
-      
+############################################################################################################
   django_gunicorn:
     volumes:
       - ./django_project:/app  # Volume para sincronizar o código fonte do Django
@@ -43,7 +43,7 @@ services:
     - DB_HOST=db
     depends_on:
       - db
-
+############################################################################################################
   nginx:
     build: ./nginx
     container_name: "nginx"
