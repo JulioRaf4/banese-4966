@@ -1,0 +1,65 @@
+version: '3.7'
+
+services:
+  db:
+    image: mysql
+    container_name: "db_cont"
+    environment:
+      - MYSQL_ROOT_PASSWORD=neeraj
+      - MYSQL_DATABASE=server_db
+      - DB_NAME=server_db
+      - DB_USER=root
+      - DB_PASSWORD=XkUIZ19ayepi14TpkfXqiYZGfyLCiTucpCObMTbPaodDzYMGZsMcPgFKEjihdeoD
+      - DB_PORT=3306
+      - DB_HOST=db
+    volumes:
+      - ./data/mysql/db:/var/lib/mysql
+
+  system_phpmyadmin:
+    image: phpmyadmin
+    container_name: system_myadmin
+    restart: always
+    ports:
+      - '8013:80'
+    environment:
+      - PMA_HOST=db_cont
+      
+  django_gunicorn:
+    volumes:
+      - ./django_project:/app  # Volume para sincronizar o código fonte do Django
+      - static:/static
+    container_name: "django_project"
+    env_file:
+      - .env
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    environment:
+    - DB_NAME=server_db
+    - DB_USER=root
+    - DB_PASSWORD=XkUIZ19ayepi14TpkfXqiYZGfyLCiTucpCObMTbPaodDzYMGZsMcPgFKEjihdeoD
+    - DB_PORT=3306
+    - DB_HOST=db
+    depends_on:
+      - db
+
+  nginx:
+    build: ./nginx
+    container_name: "nginx"
+    volumes:
+      - ./django_project:/app  # Volume para sincronizar o código fonte do Django
+      - static:/static
+    ports:
+      - "80:80"
+    depends_on:
+      - django_gunicorn
+    environment:
+    - DB_NAME=server_db
+    - DB_USER=root
+    - DB_PASSWORD=XkUIZ19ayepi14TpkfXqiYZGfyLCiTucpCObMTbPaodDzYMGZsMcPgFKEjihdeoD
+    - DB_PORT=3306
+    - DB_HOST=db
+
+volumes:
+  static:
