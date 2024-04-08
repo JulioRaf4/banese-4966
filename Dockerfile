@@ -11,4 +11,3 @@ COPY ./django_project /app
 
 COPY ./entrypoint.sh /
 ENTRYPOINT ["sh", "/entrypoint.sh"]
-
