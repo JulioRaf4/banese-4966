@@ -7,3 +7,4 @@ DJANGO_SUPERUSER_PASSWORD=$SUPER_USER_PASSWORD python manage.py createsuperuser 
 
 gunicorn django_project.wsgi:application --bind 0.0.0.0:8000
 
+# comando executado dentro do container
