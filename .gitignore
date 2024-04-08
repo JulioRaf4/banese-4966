@@ -4,7 +4,6 @@ mysql
 docker-compose.yml
 django_project/media
 Dockerfile
-*.sh
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template
