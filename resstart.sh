@@ -1,2 +1,3 @@
-docker-compose stop django_app
-docker-compose start django_app
+docker-compose stop 
+docker-compose start 
+# comando para reiniciar todos os container 
