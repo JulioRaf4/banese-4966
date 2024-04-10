@@ -93,12 +93,6 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.django_project'),
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
