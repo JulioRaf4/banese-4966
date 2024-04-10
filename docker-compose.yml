@@ -3,7 +3,7 @@ version: '3.7'
 services:
   db:
     image: mysql
-    container_name: "db_cont"
+    container_name: "db"
     environment:
       - MYSQL_ROOT_PASSWORD=neeraj
       - MYSQL_DATABASE=server_db
@@ -22,13 +22,13 @@ services:
     ports:
       - '8013:80'
     environment:
-      - PMA_HOST=db_cont
+      - PMA_HOST=db
 ############################################################################################################
   django_gunicorn:
     volumes:
       - ./app:/app  # Volume para sincronizar o código fonte do Django
       - static:/static
-    container_name: "django_project"
+    container_name: "system_web"
     env_file:
       - .env
     build:
@@ -46,7 +46,7 @@ services:
 ############################################################################################################
   nginx:
     build: ./nginx
-    container_name: "nginx"
+    container_name: "system_nginx"
     volumes:
       - ./app:/app  # Volume para sincronizar o código fonte do Django
       - static:/static
@@ -60,7 +60,6 @@ services:
     - DB_PASSWORD=XkUIZ19ayepi14TpkfXqiYZGfyLCiTucpCObMTbPaodDzYMGZsMcPgFKEjihdeoD
     - DB_PORT=3306
     - DB_HOST=db
-
-
+    
 volumes:
   static:

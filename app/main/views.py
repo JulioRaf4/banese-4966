@@ -7,5 +7,5 @@ from django.http import HttpRequest, HttpResponse
 ## GENERIC VIEWS ##
 
 def index(request):
-    return HttpResponse("Hello world")
+    return HttpResponse("Hello world....")
 

@@ -1,3 +1,5 @@
-docker logs -f  django_project
+docker logs -f  system_web
+# comando para ver os logs do container django
 
-# comando para ver os logs do container django_app
+docker logs -f  system_nginx
+# comando para ver os logs do container nginx

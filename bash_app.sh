@@ -1,3 +1,3 @@
-docker exec -it  django_project bash
+docker exec -it system_web bash
 
 # comand to run the django app bash
