@@ -175,5 +175,5 @@ build_test.sh
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
-django_project/django_project/__pycache__
-django_project/django_project/settings.py
+app/django_project/__pycache__
+app/django_project/settings.py

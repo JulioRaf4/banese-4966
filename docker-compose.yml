@@ -26,7 +26,7 @@ services:
 ############################################################################################################
   django_gunicorn:
     volumes:
-      - ./django_project:/app  # Volume para sincronizar o código fonte do Django
+      - ./app:/app  # Volume para sincronizar o código fonte do Django
       - static:/static
     container_name: "django_project"
     env_file:
@@ -48,7 +48,7 @@ services:
     build: ./nginx
     container_name: "nginx"
     volumes:
-      - ./django_project:/app  # Volume para sincronizar o código fonte do Django
+      - ./app:/app  # Volume para sincronizar o código fonte do Django
       - static:/static
     ports:
       - "80:80"
