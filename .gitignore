@@ -85,6 +85,7 @@ coverage.xml
 *.log
 local_settings.py
 db.sqlite3
+settings.py
 
 # Flask stuff:
 instance/
@@ -175,3 +176,4 @@ build_test.sh
 !.vscode/extensions.json 
 .history
 django_project/django_project/__pycache__
+django_project/django_project/settings.py
