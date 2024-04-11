@@ -83,7 +83,6 @@ coverage.xml
 
 # Django stuff:
 *.log
-local_settings.py
 db.sqlite3
 
 
@@ -176,4 +175,3 @@ build_test.sh
 !.vscode/extensions.json 
 .history
 app/django_project/__pycache__
-app/django_project/settings.py
