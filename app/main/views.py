@@ -7,4 +7,4 @@ from django.http import HttpRequest, HttpResponse
 ## GENERIC VIEWS ##
 
 def index(request):
-    return render(request, 'main/home.html')
+    return render(request, 'app4966/home.html')
