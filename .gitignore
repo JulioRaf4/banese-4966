@@ -1,7 +1,6 @@
 data
 mysql
 **/migrations
-app/media
 
 # Django #
 *.log
@@ -9,7 +8,6 @@ app/media
 *.pyc
 __pycache__
 db.sqlite3
-media
 
 # Backup files # 
 *.bak 
@@ -148,7 +146,7 @@ dmypy.json
 .pyre/
 
 # Media and Static directories
-/src/myproject/media/
+
 !/src/myproject/media/.gitkeep
 
 
