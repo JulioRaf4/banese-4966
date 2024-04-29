@@ -151,7 +151,7 @@ dmypy.json
 /src/myproject/media/
 !/src/myproject/media/.gitkeep
 
-/src/myproject/static/
+
 !/src/myproject/static/.gitkeep
 
 # Building scripts with sensitive environment variables
