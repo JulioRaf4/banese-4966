@@ -28,12 +28,12 @@ nav {
 .botao-logout {
     display: inline-flex;
     align-items: center;
-    padding-left: .8rem;
+    padding-left: 1rem;
     margin-left: 1.56rem;
     width: 6.5rem;
     height: 2.5rem;
     border-radius: 1.875rem;
-    gap: 0.3125rem;
+    gap: 0.1rem;
     color: #FFFFFF;
     background-color: #006738;
 }
@@ -59,7 +59,8 @@ a:hover, a:focus {
 }
 
 .botao-logout:hover, .botao-logout:focus{
-    color: rgba(230, 235, 216, 0.897);
+    color: #004727;
+    background-color: #009e57;
     transition: 200ms;
     text-decoration: none;
 }
