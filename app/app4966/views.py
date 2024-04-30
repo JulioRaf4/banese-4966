@@ -4,4 +4,7 @@ from django.http import HttpRequest
 
 
 def index(request):
-    return render(request, 'app4966/home.html')
+    return render(request, 'base/header.html')
+
+def chat(request):
+    return render(request, 'base/chat.html')
