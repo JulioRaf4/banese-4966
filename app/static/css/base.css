@@ -5,7 +5,20 @@
 }
 
 body {
+    z-index: -1;
     background-color: white;
+    background-image: url('../../../media/item_images/background_geral.png');
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+.back-img {
+    opacity: 0.8;
+}
+
+.back-img-tag {
+    position: relative;
+    top: 12rem;
 }
 
 .botao-comum {
