@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'Roboto Mono';
-	src: url(../../assets/fonts/Roboto%20Mono-27e7157fd8d0e1972bfd280df744b8c4.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto%20Mono-27e7157fd8d0e1972bfd280df744b8c4.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -9,7 +9,7 @@
 
 @font-face {
 	font-family: 'Roboto Mono';
-	src: url(../../assets/fonts/Roboto%20Mono-477ab35d3a4c1164294eec2862ebd491.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto%20Mono-477ab35d3a4c1164294eec2862ebd491.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -18,7 +18,7 @@
 
 @font-face {
 	font-family: 'Roboto Mono';
-	src: url(../../assets/fonts/Roboto%20Mono-a076cd69c6b4c1d4b07d7dbffc12784d.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto%20Mono-a076cd69c6b4c1d4b07d7dbffc12784d.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -27,7 +27,7 @@
 
 @font-face {
 	font-family: 'Roboto Mono';
-	src: url(../../assets/fonts/Roboto%20Mono-9ac3b4db5c01c069532a309a41e9dc6e.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto%20Mono-9ac3b4db5c01c069532a309a41e9dc6e.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -36,7 +36,7 @@
 
 @font-face {
 	font-family: 'Roboto Mono';
-	src: url(../../assets/fonts/Roboto%20Mono-68e1ffeb92f6666a6e9f337fe96b531e.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto%20Mono-68e1ffeb92f6666a6e9f337fe96b531e.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -45,7 +45,7 @@
 
 @font-face {
 	font-family: 'Roboto Mono';
-	src: url(../../assets/fonts/Roboto%20Mono-ae17e0cccac1cf42e6d8519e33d5d3ca.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto%20Mono-ae17e0cccac1cf42e6d8519e33d5d3ca.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
