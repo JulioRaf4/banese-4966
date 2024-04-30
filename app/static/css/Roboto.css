@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'Roboto';
-	src: url(../../assets/fonts/Roboto-7fe7ab5e456a564de16da062d38a8484.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto-7fe7ab5e456a564de16da062d38a8484.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -9,7 +9,7 @@
 
 @font-face {
 	font-family: 'Roboto';
-	src: url(../../assets/fonts/Roboto-ef3125f691b83e554a2fdccc153c2158.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto-ef3125f691b83e554a2fdccc153c2158.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -18,7 +18,7 @@
 
 @font-face {
 	font-family: 'Roboto';
-	src: url(../../assets/fonts/Roboto-156e01b79ada3875d5017be5be0ce6ee.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto-156e01b79ada3875d5017be5be0ce6ee.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -27,7 +27,7 @@
 
 @font-face {
 	font-family: 'Roboto';
-	src: url(../../assets/fonts/Roboto-7a319dbca55fafd4b9f14f2791d01e27.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto-7a319dbca55fafd4b9f14f2791d01e27.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -36,7 +36,7 @@
 
 @font-face {
 	font-family: 'Roboto';
-	src: url(../../assets/fonts/Roboto-da9453407e638c1ad6ed9f3191be0027.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto-da9453407e638c1ad6ed9f3191be0027.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -45,7 +45,7 @@
 
 @font-face {
 	font-family: 'Roboto';
-	src: url(../../assets/fonts/Roboto-6b938855188a40e19e5ccc45783cafac.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto-6b938855188a40e19e5ccc45783cafac.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -54,7 +54,7 @@
 
 @font-face {
 	font-family: 'Roboto';
-	src: url(../../assets/fonts/Roboto-071777c63b29322cc9d46e703fb70e72.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto-071777c63b29322cc9d46e703fb70e72.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;

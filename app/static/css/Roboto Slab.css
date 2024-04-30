@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-cc6ee26365667d6482001a2d56da814c.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto%20Slab-cc6ee26365667d6482001a2d56da814c.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -9,7 +9,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-3397df990efe2bcaf5f474a7e18e69ed.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto%20Slab-3397df990efe2bcaf5f474a7e18e69ed.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -18,7 +18,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-70974eef84bc9ce2f4a403267b8cc3b1.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto%20Slab-70974eef84bc9ce2f4a403267b8cc3b1.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -27,7 +27,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-5159919eecea7590d527230d8d611845.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto%20Slab-5159919eecea7590d527230d8d611845.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -36,7 +36,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-f769309ddb48869b5b9f555ca146ac54.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto%20Slab-f769309ddb48869b5b9f555ca146ac54.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -45,7 +45,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-05f98caeb9ea2573e5fe44262397fc6e.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto%20Slab-05f98caeb9ea2573e5fe44262397fc6e.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -54,7 +54,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-96d7c6043c2827108249b00dee897e96.woff2) format('woff2');
+	src: url(../../static/fonts/Roboto%20Slab-96d7c6043c2827108249b00dee897e96.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
