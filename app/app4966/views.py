@@ -5,7 +5,7 @@ from django.http import HttpRequest
 
 def index(request):
     print("########################################")
-    return render(request, 'base/footer.html')
+    return render(request, 'base/base.html')
 
 def chat(request):
     print("########################################")
