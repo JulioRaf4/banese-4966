@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+body {
+    background-color: white;
+    background-image: url('../media/background_geral.png');
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+.back-img {
+    opacity: 0.65;
+}
+
+.back-img-tag {
+    position: relative;
+    top: 12rem;
+}
