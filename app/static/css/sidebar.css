@@ -94,6 +94,7 @@
 }
 
 .sidebar li:hover .tooltip {
+  color: black;
   opacity: 1;
   pointer-events: auto;
   transition: all 0.4s ease;
@@ -134,7 +135,12 @@
 }
 
 .sidebar .bx-search:hover {
+  cursor: pointer;
   background: #6b6a79;
+  color: #ffffff;
+}
+
+::placeholder {
   color: #ffffff;
 }
 

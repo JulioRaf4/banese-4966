@@ -3,7 +3,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,14 +16,15 @@
     <ul class="nav-list">
       <li>
         <i class='bx bx-search'></i>
-        <input type="text" placeholder="Search...">
-        <span class="tooltip">|</span>
+        <input type="text" placeholder="Buscar">
+        <span class="tooltip">Buscar</span>
       </li>
       <li>
         <div class="icon-links">
           <a href="#">
             <i class='bx bx-collection'></i>
             <span class="links_name">Category <i class='bx bxs-chevron-down arrow'></i></span>
+            <span class="tooltip">Category</span>
           </a>
           <ul class="sub-menu">
             <li class="submenu-item"><a href="#">Submenu Item 1</a></li>
@@ -67,30 +68,35 @@
   </section>
   <script>
     let menuItems = document.querySelectorAll(".nav-list li");
-
+  
     menuItems.forEach(item => {
       item.addEventListener("click", (e) => {
-        let subMenu = item.querySelector(".sub-menu");
-        if (subMenu) {
-          subMenu.classList.toggle("open");
+        if (!sidebar.classList.contains("open")) {
+          sidebar.classList.add("open");
+          menuBtnChange(); // Atualiza o ícone do botão
+        } else {
+          let subMenu = item.querySelector(".sub-menu");
+          if (subMenu) {
+            subMenu.classList.toggle("open");
+          }
         }
       });
     });
-
+  
     let sidebar = document.querySelector(".sidebar");
     let closeBtn = document.querySelector("#btn");
     let searchBtn = document.querySelector(".bx-search");
-
+  
     closeBtn.addEventListener("click", () => {
       sidebar.classList.toggle("open");
       menuBtnChange();
     });
-
+  
     searchBtn.addEventListener("click", () => {
       sidebar.classList.toggle("open");
       menuBtnChange();
     });
-
+  
     function menuBtnChange() {
       if (sidebar.classList.contains("open")) {
         closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
@@ -99,5 +105,6 @@
       }
     }
   </script>
+  
 </body>
 </html>
