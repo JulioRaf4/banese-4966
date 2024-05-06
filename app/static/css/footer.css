@@ -1,9 +1,9 @@
 /* Estilos gerais */
-body {
+/* body {
     font-family: public sans, sans-serif;
     margin: 0;
     padding: 0; 
-}
+} */
 
 .container {
     max-width: 1200px;
@@ -13,6 +13,8 @@ body {
 
 /* Estilos para o rodapé */
 footer {
+    font-family: public sans, sans-serif;
+    padding: 40px 70px 30px 60px;
     background: #256136;
     position: absolute;
     bottom: 0;
