@@ -89,11 +89,17 @@
   
     closeBtn.addEventListener("click", () => {
       sidebar.classList.toggle("open");
+      if (!sidebar.classList.contains("open")) {
+        closeAllSubmenus(); // Recolhe todos os submenus ao fechar a sidebar
+      }
       menuBtnChange();
     });
   
     searchBtn.addEventListener("click", () => {
       sidebar.classList.toggle("open");
+      if (!sidebar.classList.contains("open")) {
+        closeAllSubmenus(); // Recolhe todos os submenus ao fechar a sidebar
+      }
       menuBtnChange();
     });
   
@@ -103,6 +109,12 @@
       } else {
         closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");
       }
+    }
+  
+    function closeAllSubmenus() {
+      document.querySelectorAll(".sub-menu.open").forEach(subMenu => {
+        subMenu.classList.remove("open");
+      });
     }
   </script>
   
