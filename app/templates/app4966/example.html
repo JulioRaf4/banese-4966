@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Requisição HTTP</title>
+</head>
+<body>
+    <h1>Enviar Requisição HTTP</h1>
+
+    <form id="promptForm" method="post" action="{% url 'teste_api' %}">
+        {% csrf_token %}
+        <label for="prompt">Digite seu prompt:</label>
+        <input type="text" id="prompt" name="prompt" required>
+        <br><br>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <div id="resposta"></div>
+
+    <script>
+    </script>
+</body>
+</html>
