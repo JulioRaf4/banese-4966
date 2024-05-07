@@ -19,9 +19,9 @@ def teste_api(request):
     if request.method == 'POST':
         try:
             prompt = request.POST['prompt']
-            resposta = enviar_prompt_chatgpt(prompt)
-            print(resposta)
-            return render(request, 'app4966/example.html', {'resposta': resposta})
+            response = enviar_prompt_chatgpt(prompt)
+            print(response)
+            return render(request, 'app4966/example.html', {'response': response})
 
         except Exception as e:
             print(e)
