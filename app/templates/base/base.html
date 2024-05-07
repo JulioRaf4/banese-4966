@@ -6,11 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-    {% include 'base/header.html' %}
-    {% include 'base/sidebar.html' %}
-    {% include 'base/background.html' %}
-    <footer>
-        {% include 'base/footer.html' %}
-    </footer>
+    <div>
+        {% include 'base/header.html' %}
+        {% include 'base/sidebar.html' %}
+        <div>
+            {% include 'base/background.html' %}
+        </div>
+        <!-- <footer>
+            {% include 'base/footer.html' %}
+        </footer> -->
+    </div>
 </body>
 </html>
