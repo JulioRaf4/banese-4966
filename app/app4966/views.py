@@ -12,4 +12,5 @@ def chat(request):
     return render(request, 'base/chat.html')
 
 def home(request):
-    return render(request, 'app4966/home.html')
+    return render(request, 'base/dados.html')
+    # return render(request, 'app4966/home.html')
