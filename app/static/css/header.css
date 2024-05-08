@@ -79,7 +79,7 @@ a:hover, a:focus {
 .nav-header .retangulo {
     position: relative;
     width: 160px;
-    height: 125px;
+    height: 100px;
     top: 0px;
     left: -25px;
     gap: 0px;
@@ -89,11 +89,14 @@ a:hover, a:focus {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    padding: 1rem;
     box-shadow: 0px 0px rgba(0, 0, 0, 0);
 }
 
 .botoes-header {
     display: flex;
     align-items: center;
+}
+
+.img-banese {
+    height: 68px;
 }
