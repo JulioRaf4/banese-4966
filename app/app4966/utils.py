@@ -5,12 +5,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def enviar_prompt_chatgpt(prompt):
-    api_key = os.environ.get("OPENAI_API_KEY")
+    # api_key = os.environ.get("OPENAI_API_KEY")
     
-    if api_key is None:
-        raise ValueError("API Key não encontrada. Verifique seu arquivo .env e a variável OPENAI_API_KEY.")
+    # if api_key is None:
+    #     raise ValueError("API Key não encontrada. Verifique seu arquivo .env e a variável OPENAI_API_KEY.")
 
-    client = OpenAI(api_key=api_key)
+    client = OpenAI(api_key='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')
 
     try:
         response = client.chat.completions.create(
