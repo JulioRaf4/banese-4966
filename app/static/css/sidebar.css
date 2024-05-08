@@ -1,14 +1,13 @@
 /* Google Font Link */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
-* {
+/* * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
+} */
 
 .sidebar {
+  box-sizing: border-box;
   position: fixed;
   left: 0;
   top: 0;
@@ -121,7 +120,7 @@
 
 .sidebar.open input {
   padding: 0 20px 0 50px;
-  width: 100%;
+  width: 68%;
 }
 
 .sidebar .bx-search {
