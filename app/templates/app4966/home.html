@@ -1,13 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <title>Homepage</title>
 </head>
 <body>
-   
-    {% include 'base/base.html' %}
+    {% include 'base/header.html' %}
+
+    {% include 'base/sidebar.html' %}
     
+    <section class="main-content">
+        <div class="banner-4966"></div>
+    </section>
+    
+    
+    <div>
+        {% include 'base/background.html' %}
+    </div>
+
 </body>
 </html>
