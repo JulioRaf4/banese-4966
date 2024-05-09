@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     
     'allauth',
     'allauth.account',
+    'djongo',
+
 ]
 
 MIDDLEWARE = [
@@ -87,25 +89,24 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-"""
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv("DB_NAME"),
-        'USER': os.getenv("DB_USER"),
-        'PASSWORD': os.getenv("DB_PASSWORD"),
-        'HOST': os.getenv("DB_HOST"),
-        'PORT': os.getenv("DB_PORT"),
-    }
-}
-"""
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'djongo',
+        'NAME': 'system_db',
+        'ENFORCE_SCHEMA': False,    
+        'CLIENT': {
+            'host': 'mongodb+srv://juliorafael:<password>@cluster0.vvsbqik.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
+            'port': 27017,
+            'username': 'juliorafael',
+            'password': 'mulamagica21',
+            'authSource': 'admin',
+            'authmechanism': 'SCRAM-SHA-1',
+        }
     }
 }
+
+
 
 
 # Password validation
