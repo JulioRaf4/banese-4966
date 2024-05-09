@@ -4,28 +4,46 @@
     font-family: "Poppins", sans-serif;
 }
 
-.main-content {
-    display: grid;
-    align-content: center;
-    justify-content: center;
+.banner-4966 {
+    display: flex;
+    justify-content: space-around;
     align-items: center;
     justify-items: center;
-    width: 1200px;
-    height: 600px;
-    background-color: aqua;
+    width: 1280px;
+    height: 405px;
+    background-color: gray;
     margin: auto;
+    position: relative;
+    z-index: 1;
+    border-radius: 25px;
+    gap: 400px;
 }
 
-.banner-4966 {
-    display: inline-grid;
-    background-color: blue;
-    height: 496px;
-    width: 980px;
-    position: flex;
-    z-index: 1;
+.banner-esq {
+    display: grid;
+    width: 400px;
+    height: 300px;
+    gap: 40px;
     align-content: center;
     justify-content: center;
     align-items: center;
     justify-items: center;
-    padding: 40px;
+    padding-left: 60px;
+}
+
+.banner-dir {
+
+}
+
+.banner-botao {
+    width: 200px;
+    height: 60px;
+    border-radius: 25px;
+}
+
+.img-fredy {
+    width: 420px;
+    height: 496px;
+    position: relative;
+    padding-bottom: 86px;
 }
