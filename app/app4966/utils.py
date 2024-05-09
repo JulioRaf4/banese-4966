@@ -24,3 +24,6 @@ def enviar_prompt_chatgpt(prompt):
 
     except Exception as e:
         raise ValueError(f"Erro ao enviar o prompt para o ChatGPT: {str(e)}")
+
+
+
