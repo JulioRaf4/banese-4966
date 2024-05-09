@@ -17,7 +17,8 @@
     padding-left: 2.4rem;
 }
 
-nav {
+.nav-header {
+    margin: 0px 0px 100px 0px;
     box-sizing: content-box;
     height: 56px;
     padding: 0px 24px;
@@ -52,15 +53,20 @@ nav {
     margin-right: 5px;
 }
 
-a {
+.botao-comum, .botao-logout {
     color: black;
     text-decoration: none;
 }
 
-a:hover, a:focus {
+.botao-comum:hover, .botao-comum:focus,
+.botao-logout:hover, .botao-logout:focus {
     color: rgba(65, 64, 64, 0.897);
     transition: 200ms;
     text-decoration: none;
+}
+
+.botao-logout {
+    color: white;
 }
 
 .botao-logout:hover, .botao-logout:focus{

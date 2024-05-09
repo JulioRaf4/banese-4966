@@ -1,9 +1,3 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: content-box;
-} */
-
 body {
     background-color: white;
     background-image: url('../media/background_geral.png');
@@ -16,6 +10,6 @@ body {
 }
 
 .back-img-tag {
-    position: relative;
+    position: absolute;
     top: 12rem;
 }
