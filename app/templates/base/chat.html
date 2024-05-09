@@ -102,12 +102,33 @@
     </div>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/bs-init.js' %}"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>      
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
-           
+        document.addEventListener('DOMContentLoaded', function () {
+            const chatButtons = document.querySelectorAll('.text-start.d-inline');
+            const inputField = document.querySelector('.form-control-lg'); 
+
+            function hideAllButtons() {
+                chatButtons.forEach(button => {
+                    button.style.display = 'none'; 
+                });
+            }
+        
+            
+            chatButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    hideAllButtons();
+                    const message = button.querySelector('strong').textContent + " - " + button.querySelector('p').textContent;
+                    inputField.value = message;
+                    button.style.display = 'none';
+                    
+                });
+            });
+        
+       
+            });
         </script>
+        
+        
 </body>
 
 
