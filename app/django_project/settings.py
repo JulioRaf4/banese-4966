@@ -96,11 +96,10 @@ DATABASES = {
         'NAME': 'system_db',
         'ENFORCE_SCHEMA': False,    
         'CLIENT': {
-            'host': 'mongodb+srv://juliorafael:<password>@cluster0.vvsbqik.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
+            'host': 'mongodb+srv://juliorafael:yhmtn2W9wOg2e063@cluster0.vvsbqik.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
             'port': 27017,
             'username': 'juliorafael',
-            'password': 'mulamagica21',
-            'authSource': 'admin',
+            'password': 'yhmtn2W9wOg2e063',
             'authmechanism': 'SCRAM-SHA-1',
         }
     }
