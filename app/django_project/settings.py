@@ -88,17 +88,21 @@ WSGI_APPLICATION = "django_project.wsgi.application"
 
 DATABASES = {
     "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+    },
+    "mongodb": {
         "ENGINE": "djongo",
         "NAME": "system_db",
         "ENFORCE_SCHEMA": False,
         "CLIENT": {
-            "host": "mongodb+srv://juliorafael:yhmtn2W9wOg2e063@cluster0.vvsbqik.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+            "host": "mongodb+srv://juliorafael:sm6IB3YBW7k5bnDk@cluster0.vvsbqik.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
             "port": 27017,
             "username": "juliorafael",
-            "password": "yhmtn2W9wOg2e063",
+            "password": "sm6IB3YBW7k5bnDk",
             "authmechanism": "SCRAM-SHA-1",
         },
-    }
+    },
 }
 
 
