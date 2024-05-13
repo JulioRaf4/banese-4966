@@ -13,7 +13,6 @@
     justify-items: center;
     width: 1280px;
     height: 405px;
-    /* background-color: gray; */
     background-image: linear-gradient(to right, #000000, #e6e6e6);
     margin: auto;
     position: relative;
@@ -38,21 +37,6 @@
     width: 200px;
     height: 60px;
     border-radius: 25px;
-    background-color: #C5E64F;
-    background-image: url(../media/play.svg);
-    background-repeat: no-repeat;
-    background-position: 15%;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-}
-
-.banner-botao:hover {
-    background-color: #c8e268;
-}
-
-.banner-botao-texto {
-    padding-left: 22px;
 }
 
 .img-fredy {
