@@ -8,17 +8,23 @@
     color: #fff;
     font-size: 24px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     justify-items: center;
-    width: 1280px;
-    height: 405px;
+    /* width: 1280px; */
+    /* height: 405px; */
+    min-width: 70vw;
+    min-height: 40vh;
+    /* max-width: fit-content; */
+    max-height: 25.2rem;
     background-image: linear-gradient(to right, #000000, #e6e6e6);
     margin: auto;
+    margin-left: 19rem;
+    margin-right: 12rem;
     position: relative;
     z-index: 1;
     border-radius: 25px;
-    gap: 400px;
+    gap: initial;
 }
 
 .banner-esq {
@@ -62,11 +68,13 @@
 }
 
 .home-carrossel {
-    margin: auto;
+    min-width: 70vw;
+    min-height: 24vh;
+    margin-bottom: auto;
     margin-top: 90px;
-    width: 1280px;
+    margin-left: 19rem;
+    margin-right: 12rem;
     background-color: gray;
-    min-height: 240px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
