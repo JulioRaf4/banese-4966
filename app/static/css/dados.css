@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.button-group {
+    display: flex;
+    position: absolute; /* Posicionamento absoluto para alinhamento preciso */
+    top: 10px; /* Altura ajustada para alinhar com a seção abaixo */
+    right: 20px; /* Distância do lado direito, ajuste conforme necessário */
+    width: 654px;
+    justify-content: space-between;
+}
+
+.btn-left{
+    background-color: #FFFFFF;
+    color: #256136;
+    border: 2px solid #C5E64F;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 200px;
+    height: 45px;
+    margin-right: 10px; /* Espaço entre os botões */
+}
+
+.btn-gerar {
+  background-color: #256136;
+  color: white;
+  border: none; /* Remove a borda */
+  cursor: pointer;
+  font-size: 16px;
+  width: 200px;
+  height: 45px;
+  margin: 0; /* Remove a margem */
+  border-radius: 15px; /* Mantém os cantos arredondados */
+}
+
+
+.input-output {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 70px; /* Espaço para não sobrepor os botões */
+  width: 100%; /* Ocupa toda a largura da seção */
+  padding: 20px; /* Espaçamento interno */
+}
+
+
+.input-box, .output-box {
+  width: 45%; /* Cada caixa ocupa aproximadamente metade do espaço disponível */
+  height: 600px; /* Altura fixa para as caixas de texto */
+  border-radius: 10px;
+  border: 2px solid #256136; /* Cor da borda similar aos botões */
+  padding: 10px; /* Espaçamento interno para o texto */
+}
+
+.input-box {
+  background-color: #FFF; /* Fundo branco para a caixa de entrada */
+}
+
+.output-box {
+  background-color: #fffbfb; /* Fundo cinza claro para a caixa de saída */
+  color: #333; /* Cor do texto mais escura para contraste */
+}
+
+.div-dados {
+  display: flex;
+  justify-content: left; /* Centraliza o botão dentro da div */
+  width: 100%; /* Ajusta a largura da div para preencher a seção */
+  margin-top: 20px; /* Ajuste o espaçamento superior conforme necessário */
+}
+
+.button-drop {
+  width: 654px; /* Largura do botão igual à das caixas de texto */
+  height: 45px; /* Altura padrão para manter consistência */
+  background-color: #FFFFFF; /* Cor de fundo do botão */
+  border: 2px solid #256136; /* Bordas do botão */
+  border-radius: 10px; /* Arredondamento das bordas */
+  font-size: 16px; /* Tamanho do texto */
+  color: #256136; /* Cor do texto */
+  cursor: pointer; /* Cursor do mouse como ponteiro */
+  text-align: center; /* Alinha o texto ao centro */
+  padding: 10px 0; /* Padding para centralizar o texto verticalmente */
+  margin-left: 24px;
+  margin-bottom: 20px;
+}
+
+
+.fundo-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 1400px;
+  height: 800px;
+  background-color: transparent;
+  margin: auto;
+  position: relative; 
+  z-index: 1;
+}

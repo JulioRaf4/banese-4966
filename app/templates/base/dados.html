@@ -5,10 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/dados.css' %}">
-    <title>{% block title %}{% endblock %}</title>
+    <title>Homepage</title>
 </head>
 <body>
-    {% include 'base/base.html' %}
-
+    {% include 'base/header.html' %}
+    {% include 'base/sidebar.html' %}
+    <section class="fundo-div">
+        <!-- Botões no canto -->
+        <div class="button-group">
+            <button class="btn-left">Botão 1</button>
+            <button class="btn-left">Botão 2</button>
+            <button class="btn-gerar">Gerar</button>
+        </div> 
+        <div class="div-dados">
+            <button class="button-drop"> Dados</button>
+        </div>       
+        <div class="input-output">
+            <textarea class="input-box" placeholder="Digite aqui..."></textarea>
+            <textarea class="output-box" placeholder="Resultado..."></textarea>
+        </div>        
+    </section>
+    <div>
+        {% include 'base/background.html' %}
+    </div>
 </body>
 </html>
+
+
+
