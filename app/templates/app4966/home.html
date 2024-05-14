@@ -1,52 +1,103 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-    <title>Homepage</title>
-</head>
-<body>
-    {% include 'base/header.html' %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home.css' %}">
+        <title>Homepage</title>
+    </head>
+    <body>
+        {% include 'base/header.html' %}
 
-    {% include 'base/sidebar.html' %}
-    
-    <section class="banner-4966">
-        <div class="banner-esq">
-            <h1>IA aplicada à criação de casos de teste para a normativa 4966</h1>
-            <button class="banner-botao">
-                <p class="banner-botao-texto">Como usar</p>
-            </button>
-        </div>
-        <div class="banner-dir">
-            <img src="../../static/media/fredy.png" alt="" class="img-fredy">
-        </div>
-    </section>
-    
-    <section class="home-carrossel">
-        <div class="slide-container">
-            <div class="slide-content">
-                <div class="card-wrapper">
+        {% include 'base/sidebar.html' %}
+        
+        <section class="banner-4966">
+            <div class="banner-esq">
+                <h1>IA aplicada à criação de casos de teste para a normativa 4966</h1>
+                <button class="banner-botao">
+                    <p class="banner-botao-texto">Como usar</p>
+                </button>
+            </div>
+            <div class="banner-dir">
+                <img src="../../static/media/fredy.png" alt="" class="img-fredy">
+            </div>
+        </section>
+        
+        <div class="gallery-wrap">
+            <img src="../../static/media/back.svg" id="backBtn">
+            <div class="gallery">
+                <div class="gal-content">
                     <div class="card">
-                        <div class="image-content">
-                            <div class="card-image">
-                                <img src="../../static/media/scir.svg" alt="" class="card-img">
-                            </div>
-                        </div>
-
-                        <div class="card-content">
-                            <p>Serviço X</p>
-                        </div>
+                        <img class="gal-img" src="../../static/media/scir.svg">
+                        <p>Serviço 1</p>
+                    </div>
+                    <div class="card">
+                        <img class="gal-img" src="../../static/media/scir.svg">
+                        <p>Serviço 2</p>
+                    </div>
+                    <div class="card">
+                        <img class="gal-img" src="../../static/media/scir.svg">
+                        <p>Serviço 3</p>
+                    </div>
+                    <div class="card">
+                        <img class="gal-img" src="../../static/media/scir.svg">
+                        <p>Serviço 4</p>
+                    </div>
+                    <div class="card">
+                        <img class="gal-img" src="../../static/media/scir.svg">
+                        <p>Serviço 5</p>
+                    </div>
+                    <div class="card">
+                        <img class="gal-img" src="../../static/media/scir.svg">
+                        <p>Serviço 6</p>
                     </div>
                 </div>
+                <!-- <div>
+                    <div class="card">
+                        <img src="../../static/media/scir.svg">
+                        <p>Serviço 4</p>
+                    </div>
+                    <div class="card">
+                        <img src="../../static/media/scir.svg">
+                        <p>Serviço 5</p>
+                    </div>
+                    <div class="card">
+                        <img src="../../static/media/scir.svg">
+                        <p>Serviço 6</p>
+                    </div>
+                </div> -->
+                
             </div>
+            <img src="../../static/media/next.svg" id="nextBtn">
         </div>
-    </section>
-    
-    <div>
-        {% include 'base/background.html' %}
-    </div>
+        
+        <div>
+            {% include 'base/background.html' %}
+        </div>
 
-</body>
+    </body>
+
+    <script>
+        let scrollContainer = document.querySelector(".gallery");
+        let backBtn = document.getElementById("backBtn");
+        let nextBtn = document.getElementById("nextBtn");
+        
+        scrollContainer.addEventListener("wheel", (evt) => {
+            evt.preventDefault();
+            scrollContainer.scrollLeft += evt.deltaY;
+            scrollContainer.style.scrollBehavior = "auto";
+        })
+
+        backBtn.addEventListener("click", () => {
+            scrollContainer.style.scrollBehavior = "smooth";
+            scrollContainer.scrollLeft -= 900;
+        });
+
+        nextBtn.addEventListener("click", () => {
+            scrollContainer.style.scrollBehavior = "smooth";
+            scrollContainer.scrollLeft += 900;
+        });
+    </script>
 </html>
