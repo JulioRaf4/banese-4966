@@ -1,14 +1,16 @@
+/* Reset Global */
 * {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
 }
 
+/* Estilos dos Botões */
 .button-group {
     display: flex;
-    position: absolute; /* Posicionamento absoluto para alinhamento preciso */
-    top: 10px; /* Altura ajustada para alinhar com a seção abaixo */
-    right: 20px; /* Distância do lado direito, ajuste conforme necessário */
+    position: absolute;
+    top: 10px;
+    right: 20px;
     width: 654px;
     justify-content: space-between;
 }
@@ -22,71 +24,104 @@
     font-size: 16px;
     width: 200px;
     height: 45px;
-    margin-right: 10px; /* Espaço entre os botões */
+    margin-right: 10px;
 }
 
 .btn-gerar {
   background-color: #256136;
   color: white;
-  border: none; /* Remove a borda */
+  border: none;
   cursor: pointer;
   font-size: 16px;
   width: 200px;
   height: 45px;
-  margin: 0; /* Remove a margem */
-  border-radius: 15px; /* Mantém os cantos arredondados */
+  border-radius: 15px;
 }
 
-
+/* Layout Principal e Elementos de Entrada/Saída */
 .input-output {
   display: flex;
   justify-content: space-around;
-  margin-top: 70px; /* Espaço para não sobrepor os botões */
-  width: 100%; /* Ocupa toda a largura da seção */
-  padding: 20px; /* Espaçamento interno */
+  margin-top: 70px;
+  width: 100%;
+  padding: 20px;
 }
 
-
 .input-box, .output-box {
-  width: 45%; /* Cada caixa ocupa aproximadamente metade do espaço disponível */
-  height: 600px; /* Altura fixa para as caixas de texto */
+  width: 45%;
+  height: 600px;
   border-radius: 10px;
-  border: 2px solid #256136; /* Cor da borda similar aos botões */
-  padding: 10px; /* Espaçamento interno para o texto */
+  border: 2px solid #256136;
+  padding: 10px;
 }
 
 .input-box {
-  background-color: #FFF; /* Fundo branco para a caixa de entrada */
+  background-color: #FFF;
 }
 
 .output-box {
-  background-color: #fffbfb; /* Fundo cinza claro para a caixa de saída */
-  color: #333; /* Cor do texto mais escura para contraste */
+  background-color: #fffbfb;
+  color: #333;
 }
 
+/* Dropdown e Botão de Dados */
 .div-dados {
   display: flex;
-  justify-content: left; /* Centraliza o botão dentro da div */
-  width: 100%; /* Ajusta a largura da div para preencher a seção */
-  margin-top: 20px; /* Ajuste o espaçamento superior conforme necessário */
+  justify-content: left;
+  width: 100%;
+  margin-top: 20px;
 }
 
 .button-drop {
-  width: 654px; /* Largura do botão igual à das caixas de texto */
-  height: 45px; /* Altura padrão para manter consistência */
-  background-color: #FFFFFF; /* Cor de fundo do botão */
-  border: 2px solid #256136; /* Bordas do botão */
-  border-radius: 10px; /* Arredondamento das bordas */
-  font-size: 16px; /* Tamanho do texto */
-  color: #256136; /* Cor do texto */
-  cursor: pointer; /* Cursor do mouse como ponteiro */
-  text-align: center; /* Alinha o texto ao centro */
-  padding: 10px 0; /* Padding para centralizar o texto verticalmente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 654px;
+  height: 45px;
+  background-color: #FFFFFF;
+  border: 2px solid #256136;
+  border-radius: 10px;
+  font-size: 16px;
+  color: #256136;
+  cursor: pointer;
+  padding: 10px 0;
   margin-left: 24px;
   margin-bottom: 20px;
 }
 
+.button-drop img {
+  margin-left: 5px; /* Ícone à direita do texto */
+  height: 20px;
+}
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown-content label {
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+/* Estilos de Fundo e Layout Principal */
 .fundo-div {
   display: flex;
   flex-direction: column;
@@ -96,6 +131,6 @@
   height: 800px;
   background-color: transparent;
   margin: auto;
-  position: relative; 
+  position: relative;
   z-index: 1;
 }
