@@ -67,7 +67,7 @@
 
 .gallery {
     box-sizing: border-box;
-    width: 900px;
+    width: 70vw;
     display: flex;
     overflow-x: scroll;
 }
@@ -110,7 +110,7 @@
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
     color: #34884B;
 }
 
