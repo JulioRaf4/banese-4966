@@ -5,26 +5,26 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* Estilos dos Botões */
+/* Estilos dos Botões e Campos de Entrada */
 .button-group {
-    display: flex;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    width: 654px;
-    justify-content: space-between;
+  display: flex;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  width: 654px;
+  justify-content: space-between;
 }
 
-.btn-left{
-    background-color: #FFFFFF;
-    color: #256136;
-    border: 2px solid #C5E64F;
-    border-radius: 15px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 200px;
-    height: 45px;
-    margin-right: 10px;
+.btn-left, .input-style {
+  background-color: #FFFFFF;
+  color: #256136;
+  border: 2px solid #C5E64F;
+  border-radius: 15px;
+  cursor: pointer; /* Mantém o cursor como pointer para botões, mas será substituído em input-style */
+  font-size: 16px;
+  width: 200px;
+  height: 45px;
+  margin-right: 10px;
 }
 
 .btn-gerar {
@@ -36,6 +36,18 @@
   width: 200px;
   height: 45px;
   border-radius: 15px;
+}
+
+.input-style {
+  cursor: text; /* Muda o cursor para indicar edição de texto */
+  padding-left: 10px; /* Espaço interno para o texto começar um pouco afastado da borda */
+  outline: none; /* Remove o contorno ao focar no input */
+}
+
+.input-style::placeholder {
+  color: #256136;
+  text-align: center; /* Centraliza o placeholder */
+  opacity: 1; /* Garante que o placeholder é claramente visível */
 }
 
 /* Layout Principal e Elementos de Entrada/Saída */
