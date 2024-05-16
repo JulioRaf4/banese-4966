@@ -6,13 +6,11 @@ from .utils import enviar_prompt_chatgpt
 
 
 def index(request):
-    print("########################################")
-    return render(request, "base/sidebar.html")
+    return render(request, "app4966/home.html")
 
 
-def chat(request):
-    print("########################################")
-    return render(request, "base/chat.html")
+def sci(request):
+    return render(request, "app4966/sci.html")
 
 
 def teste_api(request):
@@ -26,8 +24,3 @@ def teste_api(request):
             print(e)
 
     return render(request, "app4966/example.html")
-
-
-def home(request):
-    return render(request, "app4966/home.html")
-
