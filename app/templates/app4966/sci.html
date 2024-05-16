@@ -1,56 +1,70 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/dados.css' %}">
-    <title>Homepage</title>
-    <script>
-        function updateButtonText() {
-            var selectedOptions = [];
-            var checkboxes = document.querySelectorAll('.dropdown-content input[type="checkbox"]:checked');
-            checkboxes.forEach(function(checkbox) {
-                selectedOptions.push(checkbox.parentElement.textContent.trim());
-            });
-            var button = document.querySelector('.button-drop');
-            if (selectedOptions.length > 0) {
-                button.textContent = selectedOptions.join(', ');
-            } else {
-                button.textContent = 'Dados';
-            }
-        }
-    </script>
+    <title>SCI</title>
 </head>
+
 <body>
     {% include 'base/header.html' %}
     {% include 'base/sidebar.html' %}
     <section class="fundo-div">
-        <!-- Botões no canto -->
-        <div class="button-group">
-            <input type="text" class="btn-left input-style" placeholder="Entrada">
-            <input type="text" class="btn-left input-style" placeholder="Saída">
-            <button class="btn-gerar">Gerar</button>
-        </div> 
-        <div class="div-dados">
+        <form class="div-dados" method="post" id="main-form">
+            {% csrf_token %}
             <div class="dropdown">
-                <button class="button-drop" onclick="updateButtonText()">
+                <button class="button-drop" type="button" onclick="updateButtonText()">
                     Dados <img src="{% static 'media/dropdown-svgrepo-com.svg' %}" alt="Dropdown" class="button-icon">
-                </button>                
+                </button>
                 <div class="dropdown-content">
-                    <label><input type="checkbox" onchange="updateButtonText()"> Opção 1</label>
-                    <label><input type="checkbox" onchange="updateButtonText()"> Opção 2</label>
+                    <label><input type="checkbox" name="opcao1" onchange="updateButtonText()"> Opção 1</label>
+                    <label><input type="checkbox" name="opcao2" onchange="updateButtonText()"> Opção 2</label>
                     <!-- Adicione mais opções de acordo com sua necessidade -->
                 </div>
             </div>
-        </div>     
-        <div class="input-output">
-            <textarea class="input-box" placeholder="Digite aqui..."></textarea>
-            <div class="output-box" >{{ response }}</div>
-        </div>        
+            <!-- Botões no canto -->
+            <div class="button-group">
+                <input type="text" class="btn-left input-style" name="Entrada" placeholder="Chave de entrada...">
+                <input type="text" class="btn-left input-style" name="Saida" placeholder="Chave de saída...">
+                <!-- Campo oculto para armazenar o valor do textarea -->
+                <input type="hidden" name="prompt" id="hidden-prompt">
+                <button class="btn-gerar" type="submit" onclick="copyTextareaValue()">Gerar</button>
+            </div>
+        </form>
+
+        <form class="input-output" method="post" id="preview-form">
+            {% csrf_token %}
+            <textarea class="input-box" name="prompt" placeholder="Informe o Json para realizar o preview dos dados...">{{ prompt_value }}</textarea>
+            <div class="output-box">{{ response }}</div>
+            <button class="btn-gerar btn-preview" type="submit">Enviar preview</button>
+        </form>
     </section>
     <div>
         {% include 'base/background.html' %}
     </div>
 </body>
+<script>
+    function updateButtonText() {
+        var selectedOptions = [];
+        var checkboxes = document.querySelectorAll('.dropdown-content input[type="checkbox"]:checked');
+        checkboxes.forEach(function (checkbox) {
+            selectedOptions.push(checkbox.parentElement.textContent.trim());
+        });
+        var button = document.querySelector('.button-drop');
+        if (selectedOptions.length > 0) {
+            button.textContent = selectedOptions.join(', ');
+        } else {
+            button.textContent = 'Dados';
+        }
+    }
+
+    function copyTextareaValue() {
+        var textareaValue = document.querySelector('.input-box').value;
+        document.getElementById('hidden-prompt').value = textareaValue;
+    }
+</script>
+
 </html>

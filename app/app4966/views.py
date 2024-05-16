@@ -10,7 +10,12 @@ def index(request):
 
 
 def sci(request):
-    return render(request, "app4966/sci.html")
+    print(request.POST)
+    prompt_value = request.POST.get('prompt', '')
+    context = {
+        'prompt_value': prompt_value,
+    }
+    return render(request, "app4966/sci.html", context)
 
 
 def teste_api(request):
