@@ -30,3 +30,4 @@ def teste_api(request):
 
 def home(request):
     return render(request, "app4966/home.html")
+
