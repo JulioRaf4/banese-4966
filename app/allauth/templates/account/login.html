@@ -11,12 +11,13 @@
     <title>Login</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7phzX1ZmSqX/+q1xNI9Bb3EvzBwjqqppV0Ld75Yx1z0r" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- Fonte Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         body, html {
             height: 100%;
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', Arial, sans-serif; /* Adicionando Poppins como a primeira opção de fonte */
         }
 
         .split {
@@ -115,10 +116,19 @@
             display: block;
         }
 
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0; /* Ajuste conforme necessário */
+        }
+
         .forgot-password-link {
             text-align: right;
-            margin-top: -15px; /* Ajuste conforme necessário */
-            margin-bottom: 20px; /* Ajuste conforme necessário */
+        }
+
+        .subtitle {
+            font-size: larger;
         }
     </style>
 </head>
@@ -128,9 +138,8 @@
             <form method="post" action="{% url 'account_login' %}" class="form-signin">
                 {% csrf_token %}
                 <h2 class="form-signin-heading">{% trans "Login" %}</h2>
-                <p>{% trans "Insira suas credenciais para acessar sua conta" %}</p>
+                <p class="subtitle">{% trans "Insira suas credenciais para acessar sua conta" %}</p>
                 
-                <br>
                 <br>
 
                 <div class="mb-3">
@@ -142,21 +151,22 @@
                 </div>
 
                 <br>
-                <br>
 
-                <div class="mb-3">
+                <div class="mb-3 form-group">
                     <label for="inputPassword" class="form-label">{% trans "Senha" %}</label>
                     <div class="forgot-password-link">
                         <a href="#" class="float-end">{% trans "Esqueci minha senha" %}</a>
                     </div>
                 </div>
                 
+                <br>
+
                 <div class="mb-3">
                     <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Enter your password" required>
                 </div>
 
                 <br>
-                <br>
+                
 
                 <button class="btn btn-lg btn-primary btn-block w-100" type="submit">{% trans "Login" %}</button>
 
@@ -166,8 +176,7 @@
                 <hr class="my-4">
 
                 <br>
-                <br>
-
+                
                 <button class="btn btn-outline-secondary w-100 mb-2">
                     <img src="{% static 'media/google-icon.png' %}" alt="Google Icon" width="20" class="me-2"> {% trans "Sign in with Provider" %}
                 </button>
