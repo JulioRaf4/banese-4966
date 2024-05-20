@@ -32,7 +32,9 @@
         .left {
             left: 0;
             background-color: #fff;
-            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .right {
@@ -41,6 +43,58 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 25px;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .form-signin-heading {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 10px;
+            border-color: #0f141069;
+            width: 380px;
+        }
+
+        .btn-primary {
+            background-color: #28a745;
+            border-color: transparent;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 1.2rem;
+            width: 400px;
+        }
+
+        .btn-outline-secondary {
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 1rem;
+            width: 400px;
+        }
+
+        .text-muted {
+            font-size: 0.9rem;
+        }
+
+        .text-center a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .text-center a:hover {
+            text-decoration: underline;
         }
 
         .slideshow {
@@ -54,10 +108,17 @@
 
         .slide {
             display: none;
+            overflow: hidden;
         }
 
         .slide.active {
             display: block;
+        }
+
+        .forgot-password-link {
+            text-align: right;
+            margin-top: -15px; /* Ajuste conforme necessário */
+            margin-bottom: 20px; /* Ajuste conforme necessário */
         }
     </style>
 </head>
@@ -66,24 +127,54 @@
         <div class="container">
             <form method="post" action="{% url 'account_login' %}" class="form-signin">
                 {% csrf_token %}
-                <h2 class="form-signin-heading">{% trans "Please sign in" %}</h2>
+                <h2 class="form-signin-heading">{% trans "Login" %}</h2>
+                <p>{% trans "Insira suas credenciais para acessar sua conta" %}</p>
+                
+                <br>
+                <br>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">{% trans "Email" %}</label>
+                </div>
+                <br>
+                <div class="mb-3">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required autofocus>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="mb-3">
+                    <label for="inputPassword" class="form-label">{% trans "Senha" %}</label>
+                    <div class="forgot-password-link">
+                        <a href="#" class="float-end">{% trans "Esqueci minha senha" %}</a>
+                    </div>
+                </div>
                 
                 <div class="mb-3">
-                    <label for="email" class="form-label">{% trans "Email address" %}</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required autofocus>
+                    <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Enter your password" required>
                 </div>
 
-                <div class="mb-3">
-                    <label for="inputPassword" class="form-label">{% trans "Password" %}</label>
-                    <input type="password" class="form-control" id="inputPassword" name="password" required>
-                </div>
+                <br>
+                <br>
 
-                <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans "Sign in" %}</button>
+                <button class="btn btn-lg btn-primary btn-block w-100" type="submit">{% trans "Login" %}</button>
+
+                <br>
+                <br>
+
+                <hr class="my-4">
+
+                <br>
+                <br>
+
+                <button class="btn btn-outline-secondary w-100 mb-2">
+                    <img src="{% static 'media/google-icon.png' %}" alt="Google Icon" width="20" class="me-2"> {% trans "Sign in with Provider" %}
+                </button>
             </form>
-            <p class="mt-5 mb-3 text-muted">
-                {% blocktrans %}If you have not created an account yet, then please
-                <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
-            </p>
+            <p class="mt-3" style="text-align: center;">
+                {% blocktrans %}Não possui conta? <a href="{{ signup_url }}">Cadastre-se</a>{% endblocktrans %}
+            </p>                       
             {% if SOCIALACCOUNT_ENABLED %}
                 {% include "socialaccount/snippets/login.html" %}
             {% endif %}
