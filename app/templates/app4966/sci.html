@@ -1,14 +1,12 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/dados.css' %}">
     <title>SCI</title>
 </head>
-
 <body>
     {% include 'base/header.html' %}
     {% include 'base/sidebar.html' %}
@@ -38,8 +36,10 @@
         <form class="input-output" method="post" id="preview-form">
             {% csrf_token %}
             <textarea class="input-box" name="prompt" placeholder="Informe o Json para realizar o preview dos dados...">{{ prompt_value }}</textarea>
-            <textarea readonly class="output-box">{{ response }}</textarea>
+            <textarea readonly class="output-box" id="output-box">{{ response }}</textarea>
             <button class="btn-gerar btn-preview" type="submit">Enviar preview</button>
+            <!-- Botão de download -->
+            <button type="button" class="btn-download" onclick="downloadJSON()">Baixar JSON</button>
         </form>
     </section>
     <div>
@@ -65,6 +65,29 @@
         var textareaValue = document.querySelector('.input-box').value;
         document.getElementById('hidden-prompt').value = textareaValue;
     }
-</script>
 
+    function downloadJSON() {
+        // Obter o conteúdo do textarea onde a resposta está
+        var content = document.getElementById('output-box').value;
+
+        // Verificar se o conteúdo não está vazio
+        if (content.trim() === "") {
+            alert("Nenhum conteúdo para realizar o download!");
+            return;
+        }
+
+        // Criar um objeto blob a partir do conteúdo
+        var blob = new Blob([content], { type: 'application/json' });
+
+        // Criar um link para download
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = 'response.json';
+
+        // Adicionar o link ao corpo, clicar nele e removê-lo
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
 </html>
