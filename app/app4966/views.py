@@ -4,7 +4,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .utils import (
     enviaPrompt,
-    enviaPromptPreview
+    enviaPromptPreview,
+    enviaPromptSCI
 )
 
 def index(request):
@@ -12,26 +13,21 @@ def index(request):
 
 
 def sci(request):
+    context = {}
+
     if request.method == "POST":
-        if request.POST.get("entrada", "") == "":
-            prompt_value = request.POST.get("prompt", "")
-            response = enviaPromptPreview(prompt_value)
-            context = {
-                "prompt_value": prompt_value,
-                "response": response
-            }
-            return render(request, "app4966/sci.html", context)
-        
+        prompt_value = request.POST.get("prompt", "")
+        entrada_value = request.POST.get("entrada", "")
+
+        if not entrada_value:
+            context["response"] = enviaPromptPreview(prompt_value)
         else:
-            prompt_value = request.POST.get("prompt", "")
-            response = enviaPromptPreview(prompt_value)
-            context = {
-                "prompt_value": prompt_value,
-                "response": response
-            }
-            return render(request, "app4966/sci.html", context)
-    
-    return render(request, "app4966/sci.html")
+            saida_value = request.POST.get("saida", "")
+            context["response"] = enviaPromptSCI(prompt_value, entrada_value, saida_value)
+
+        context["prompt_value"] = prompt_value
+
+    return render(request, "app4966/sci.html", context)
 
 
 def teste_api(request):

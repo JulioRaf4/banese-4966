@@ -38,7 +38,7 @@
         <form class="input-output" method="post" id="preview-form">
             {% csrf_token %}
             <textarea class="input-box" name="prompt" placeholder="Informe o Json para realizar o preview dos dados...">{{ prompt_value }}</textarea>
-            <div class="output-box">{{ response }}</div>
+            <textarea readonly class="output-box">{{ response }}</textarea>
             <button class="btn-gerar btn-preview" type="submit">Enviar preview</button>
         </form>
     </section>
