@@ -58,3 +58,9 @@ def enviaPromptSCI(prompt, entrada):
     Envia também para a fila de provisionamento
     """
     ...
+
+def armazenaReqResponse(prompt):
+    """Função para armazenar a request e a response no banco de dados"""
+    ...
+
+    

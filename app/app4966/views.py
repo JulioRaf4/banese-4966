@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from .models import Chat
+import datetime
 
 from .utils import (
     enviaPrompt,
@@ -38,7 +40,11 @@ def teste_api(request):
     if request.method == "POST":
         try:
             prompt = request.POST["prompt"]
-            response = enviaPrompt(prompt)
+            # response = enviaPrompt(prompt)
+            response = "xulio vacilao"
+            chat_instance = Chat(prompt=prompt, response=response)
+            chat_instance.save()
+            print(JsonResponse({'status': 'success', 'message': 'Prompt armazenado com sucesso'}))
             return render(request, "app4966/example.html", {"response": response})
 
         except Exception as e:
