@@ -14,9 +14,16 @@ def index(request):
 
 
 def sci(request):
+    """Função para lidar com requisições HTTP para a página SCI.
+
+    Essa função trata requisições POST para processar dados do formulário
+    e gerar respostas apropriadas usando funções auxiliares. Ela também
+    renderiza a página 'sci.html' com o contexto atualizado.
+    """    
     context = {}
 
     if request.method == "POST":
+        print(request.POST)
         prompt_value = request.POST.get("prompt", "")
         entrada_value = request.POST.get("entrada", "")
 
@@ -24,7 +31,7 @@ def sci(request):
             context["response"] = enviaPromptPreview(prompt_value)
         else:
             saida_value = request.POST.get("saida", "")
-            context["response"] = enviaPromptSCI(prompt_value, entrada_value, saida_value)
+            context["response"] = enviaPromptSCI(entrada_value, entrada_value, saida_value)
 
         context["prompt_value"] = prompt_value
 

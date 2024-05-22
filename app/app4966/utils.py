@@ -74,7 +74,6 @@ def enviaPromptSCI(prompt: str, entrada: str, saida: str) -> str:
                 }
             ],
         )
-        print(response.choices[0].message.content.strip())
         return response.choices[0].message.content.strip()
 
     except Exception as e:
