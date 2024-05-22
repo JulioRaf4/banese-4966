@@ -6,7 +6,8 @@ import datetime
 
 from .utils import (
     enviaPrompt,
-    enviaPromptPreview
+    enviaPromptPreview,
+    armazenaReqResponse
 )
 
 def index(request):
@@ -42,9 +43,8 @@ def teste_api(request):
             prompt = request.POST["prompt"]
             # response = enviaPrompt(prompt)
             response = "xulio vacilao"
-            chat_instance = Chat(prompt=prompt, response=response)
-            chat_instance.save()
-            print(JsonResponse({'status': 'success', 'message': 'Prompt armazenado com sucesso'}))
+            armazenaReqResponse(prompt, response)
+            
             return render(request, "app4966/example.html", {"response": response})
 
         except Exception as e:

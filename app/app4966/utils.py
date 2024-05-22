@@ -1,6 +1,8 @@
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
+from .models import Chat
+from django.http import JsonResponse
 
 load_dotenv()
 
@@ -59,8 +61,14 @@ def enviaPromptSCI(prompt, entrada):
     """
     ...
 
-def armazenaReqResponse(prompt):
+def armazenaReqResponse(prompt, response):
     """Função para armazenar a request e a response no banco de dados"""
-    ...
+    try:
+        chat_instance = Chat(prompt=prompt, response=response)
+        chat_instance.save()
+        print(JsonResponse({'status': 'success', 'message': 'Prompt armazenado com sucesso'}))
+
+    except Exception as e:
+        print(e)
 
     
