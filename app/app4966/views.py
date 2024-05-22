@@ -1,10 +1,12 @@
+import json
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from .utils import (
     enviaPrompt,
-    enviaPromptPreview
+    enviaPromptPreview,
+    enviaPromptSCI
 )
 
 def index(request):
@@ -12,26 +14,28 @@ def index(request):
 
 
 def sci(request):
+    """Função para lidar com requisições HTTP para a página SCI.
+
+    Essa função trata requisições POST para processar dados do formulário
+    e gerar respostas apropriadas usando funções auxiliares. Ela também
+    renderiza a página 'sci.html' com o contexto atualizado.
+    """    
+    context = {}
+
     if request.method == "POST":
-        if request.POST.get("entrada", "") == "":
-            prompt_value = request.POST.get("prompt", "")
-            response = enviaPromptPreview(prompt_value)
-            context = {
-                "prompt_value": prompt_value,
-                "response": response
-            }
-            return render(request, "app4966/sci.html", context)
-        
+        print(request.POST)
+        prompt_value = request.POST.get("prompt", "")
+        entrada_value = request.POST.get("entrada", "")
+
+        if not entrada_value:
+            context["response"] = enviaPromptPreview(prompt_value)
         else:
-            prompt_value = request.POST.get("prompt", "")
-            response = enviaPromptPreview(prompt_value)
-            context = {
-                "prompt_value": prompt_value,
-                "response": response
-            }
-            return render(request, "app4966/sci.html", context)
-    
-    return render(request, "app4966/sci.html")
+            saida_value = request.POST.get("saida", "")
+            context["response"] = enviaPromptSCI(entrada_value, entrada_value, saida_value)
+
+        context["prompt_value"] = prompt_value
+
+    return render(request, "app4966/sci.html", context)
 
 
 def teste_api(request):
@@ -45,3 +49,22 @@ def teste_api(request):
             print(e)
 
     return render(request, "app4966/example.html")
+
+
+def download_json(request: HttpRequest) -> HttpResponse:
+    if request.method == "POST":
+        prompt_value = request.POST.get("prompt", "")
+        response_data = enviaPromptPreview(prompt_value)
+        
+        try:
+            response_json = json.loads(response_data)
+        except json.JSONDecodeError:
+            return HttpResponse("Erro ao decodificar o JSON.", status=400)
+
+        response_json_str = json.dumps(response_json, indent=4)
+
+        response = HttpResponse(response_json_str, content_type='application/json')
+        response['Content-Disposition'] = 'attachment; filename="response.json"'
+        return response
+
+    return HttpResponse("Método não permitido.", status=405)
