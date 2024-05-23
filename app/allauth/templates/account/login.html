@@ -130,6 +130,8 @@
         .subtitle {
             font-size: larger;
         }
+
+
     </style>
 </head>
 <body>
@@ -168,18 +170,14 @@
                 <br>
                 
 
-                <button class="btn btn-lg btn-primary btn-block w-100" type="submit">{% trans "Login" %}</button>
+                <button class="btn btn-lg btn-primary btn-block w-100" style="color: #fff;" type="submit">{% trans "Login" %}</button>
 
                 <br>
                 <br>
 
                 <hr class="my-4">
 
-                <br>
-                
-                <button class="btn btn-outline-secondary w-100 mb-2">
-                    <img src="{% static 'media/google-icon.png' %}" alt="Google Icon" width="20" class="me-2"> {% trans "Sign in with Provider" %}
-                </button>
+ 
             </form>
             <p class="mt-3" style="text-align: center;">
                 {% blocktrans %}Não possui conta? <a href="{{ signup_url }}">Cadastre-se</a>{% endblocktrans %}
