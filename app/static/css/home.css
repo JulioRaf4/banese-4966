@@ -26,19 +26,21 @@
 
 .banner-esq {
     display: grid;
-    width: 400px;
-    height: 300px;
-    gap: 40px;
+    width: 21.8vw;
+    height: 40vh;
+    gap: 2.5rem;
     align-content: center;
     justify-content: center;
     align-items: center;
     justify-items: center;
-    padding-left: 60px;
+    padding-left: 3.75rem;
+    overflow: hidden;
 }
 
 .banner-botao {
-    width: 200px;
+    width: 10.417vw;
     height: 60px;
+    overflow: hidden;
     border-radius: 25px;
     background-color: #C5E64F;
     background-image: url(../media/play.svg);
@@ -47,6 +49,15 @@
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.banner-botao p {
+    padding-left: 32px;
 }
 
 .banner-botao:hover {
@@ -76,10 +87,10 @@
     width: 100%;
     min-width: 70vw;
     display: grid;
-    min-height: 24vh;
+    /* min-height: 24vh; */
     grid-template-columns: auto auto auto auto auto auto;
     grid-gap: 20px;
-    /* padding: 10px; */
+    padding: 10px;
     display: inline-grid;
     flex: none;
     align-content: center;
@@ -90,7 +101,9 @@
 
 .gal-img {
     position: relative;
-    padding: 25px 0;
+    padding: 20px 0;
+    width: 3vw;
+    height: 5vh;
 }
 
 .gallery::-webkit-scrollbar {
@@ -104,7 +117,6 @@
     margin-top: 90px;
     margin-left: 19rem;
     margin-right: 12rem;
-    /* background-color: gray; */
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -120,16 +132,12 @@
     margin: 40px;
 }
 
-/* .gallery div img:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-} */
-
 .card {
-    width: 9vw;
-    height: 20vh;
+    width: 11vw;
+    height: 23vh;
     min-width: 9vw;
     padding-left: 20px;
+    padding-right: 4px;
     border-radius: 25px;
     background-color: #fff;
     border: 1px solid #C5E64F;
@@ -140,4 +148,89 @@
 .card:hover {
     cursor: pointer;
     transform: scale(1.05);
+}
+
+.card-content {
+    width: 90%;
+    height: 90%;
+    padding: 5px;
+    font-size: 1.1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+
+@media screen and (max-width: 1434px) {
+    .banner-4966 {
+        color: #fff;
+        /* font-size: 24px; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+        min-width: 70vw;
+        min-height: 40vh;
+        max-height: 25.2rem;
+        background-image: linear-gradient(to right, #000000, #e6e6e6);
+        margin: auto;
+        margin-left: 19rem;
+        margin-right: 12rem;
+        position: relative;
+        z-index: 1;
+        border-radius: 25px;
+
+    }
+
+    .banner-4966 h1 {
+        font-size: 1.5rem;
+    }
+    
+    .banner-esq {
+        display: grid;
+        width: 21.8vw;
+        height: 40vh;
+        gap: 2.5rem;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+        padding-left: 3.75rem;
+        overflow: hidden;
+    }
+    
+    .banner-botao {
+        width: 10.417vw;
+        height: 60px;
+        overflow: hidden;
+        border-radius: 25px;
+        background-color: #C5E64F;
+        background-image: none;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        display: grid;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+    }
+    
+    .banner-botao p {
+        /* padding-left: 32px; */
+        padding-right: 32px;
+        font-size: 0.8rem;
+    }
+    
+    .banner-botao:hover {
+        background-color: #c9e26d;
+        color: #2c2c2c;
+    }
+    
+    .banner-botao-texto {
+        padding-left: 22px;
+    }
+
+    .img-fredy {
+        display: none;
+    }
 }

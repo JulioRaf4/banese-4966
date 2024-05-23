@@ -5,52 +5,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/tela_sci.css' %}">
-    <title>Homepage</title>
-    <script>
-        function updateButtonText() {
-            var selectedOptions = [];
-            var checkboxes = document.querySelectorAll('.dropdown-content input[type="checkbox"]:checked');
-            checkboxes.forEach(function(checkbox) {
-                selectedOptions.push(checkbox.parentElement.textContent.trim());
-            });
-            var button = document.querySelector('.button-drop');
-            if (selectedOptions.length > 0) {
-                button.textContent = selectedOptions.join(', ');
-            } else {
-                button.textContent = 'Dados';
-            }
-        }
-    </script>
+    <title>SCI</title>
 </head>
 <body>
     {% include 'base/header.html' %}
     {% include 'base/sidebar.html' %}
     <section class="fundo-div">
-        <!-- Botões no canto -->
-        <div class="button-group">
-            <input type="text" class="btn-left input-style" placeholder="Entrada">
-            <input type="text" class="btn-left input-style" placeholder="Saída">
-            <button class="btn-gerar">Gerar</button>
-        </div> 
-        <div class="div-dados">
+        <form class="div-dados" method="post" id="main-form">
+            {% csrf_token %}
             <div class="dropdown">
-                <button class="button-drop" onclick="updateButtonText()">
+                <button class="button-drop" type="button" onclick="updateButtonText()">
                     Dados <img src="{% static 'media/dropdown-svgrepo-com.svg' %}" alt="Dropdown" class="button-icon">
-                </button>                
+                </button>
                 <div class="dropdown-content">
-                    <label><input type="checkbox" onchange="updateButtonText()"> Opção 1</label>
-                    <label><input type="checkbox" onchange="updateButtonText()"> Opção 2</label>
+                    <label><input type="checkbox" name="opcao1" onchange="updateButtonText()"> Opção 1</label>
+                    <label><input type="checkbox" name="opcao2" onchange="updateButtonText()"> Opção 2</label>
                     <!-- Adicione mais opções de acordo com sua necessidade -->
                 </div>
             </div>
-        </div>     
-        <div class="input-output">
-            <textarea class="input-box" placeholder="Digite aqui..."></textarea>
-            <div class="output-box" >{{ response }}</div>
-        </div>        
+            <!-- Botões no canto -->
+            <div class="button-group">
+
+                <!-- Campo oculto para armazenar o valor do textarea -->
+                <input type="hidden" name="entrada" id="hidden-prompt" value="True">
+                <!-- Campo oculto para armazenar o valor do textarea -->
+                <button class="btn-gerar" type="submit" onclick="copyTextareaValue()">Gerar</button>
+            </div>
+        </form>
+
+        <form class="input-output" method="post" id="preview-form">
+            {% csrf_token %}
+            <textarea class="input-box" name="prompt" placeholder="Informe o Json para realizar o preview dos dados...">{{ prompt_value }}</textarea>
+            <textarea readonly class="output-box" id="output-box">{{ response }}</textarea>
+            <button class="btn-gerar btn-preview" type="submit">Enviar preview</button>
+            <!-- Botão de download -->
+            <button type="button" class="btn-download btn-gerar" onclick="downloadJSON()">Baixar JSON</button>
+        </form>
     </section>
     <div>
         {% include 'base/background.html' %}
     </div>
 </body>
+<script>
+    function updateButtonText() {
+        var selectedOptions = [];
+        var checkboxes = document.querySelectorAll('.dropdown-content input[type="checkbox"]:checked');
+        checkboxes.forEach(function (checkbox) {
+            selectedOptions.push(checkbox.parentElement.textContent.trim());
+        });
+        var button = document.querySelector('.button-drop');
+        if (selectedOptions.length > 0) {
+            button.textContent = selectedOptions.join(', ');
+        } else {
+            button.textContent = 'Dados';
+        }
+    }
+
+    function copyTextareaValue() {
+        var textareaValue = document.querySelector('.input-box').value;
+        document.getElementById('hidden-prompt').value = textareaValue;
+    }
+
+    function downloadJSON() {
+        // Obter o conteúdo do textarea onde a resposta está
+        var content = document.getElementById('output-box').value;
+
+        // Verificar se o conteúdo não está vazio
+        if (content.trim() === "") {
+            alert("Nenhum conteúdo para realizar o download!");
+            return;
+        }
+
+        // Criar um objeto blob a partir do conteúdo
+        var blob = new Blob([content], { type: 'application/json' });
+
+        // Criar um link para download
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = 'response.json';
+
+        // Adicionar o link ao corpo, clicar nele e removê-lo
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
 </html>
