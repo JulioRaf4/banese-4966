@@ -42,7 +42,7 @@ def teste_api(request):
     if request.method == "POST":
         try:
             prompt = request.POST["prompt"]
-            response = "xulio vacilao"
+            response = "teste quinta"
             
             armazenaReqResponse(prompt=prompt, response=response)
 
