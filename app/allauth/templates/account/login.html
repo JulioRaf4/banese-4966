@@ -1,36 +1,212 @@
-{% extends "account/base_entrance.html" %}
 {% load i18n %}
-{% load allauth account %}
-{% block head_title %}
-    {% trans "Sign In" %}
-{% endblock head_title %}
-{% block content %}
-    {% element h1 %}
-        {% trans "Sign In" %}
-    {% endelement %}
-    <p>
-        {% blocktrans %}If you have not created an account yet, then please
-    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
-    </p>
-    {% url 'account_login' as login_url %}
-    {% element form form=form method="post" action=login_url tags="entrance,login" %}
-        {% slot body %}
-            {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
-            {% if redirect_field_value %}
-                <input type="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}" />
+{% load allauth %}
+{% load account %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7phzX1ZmSqX/+q1xNI9Bb3EvzBwjqqppV0Ld75Yx1z0r" crossorigin="anonymous">
+    <!-- Fonte Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Poppins', Arial, sans-serif; /* Adicionando Poppins como a primeira opção de fonte */
+        }
+
+        .split {
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .left {
+            left: 0;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .right {
+            right: 0;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 25px;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .form-signin-heading {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 10px;
+            border-color: #0f141069;
+            width: 380px;
+        }
+
+        .btn-primary {
+            background-color: #28a745;
+            border-color: transparent;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 1.2rem;
+            width: 400px;
+        }
+
+        .btn-outline-secondary {
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 1rem;
+            width: 400px;
+        }
+
+        .text-muted {
+            font-size: 0.9rem;
+        }
+
+        .text-center a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .text-center a:hover {
+            text-decoration: underline;
+        }
+
+        .slideshow {
+            max-width: 100%;
+            height: auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0; /* Ajuste conforme necessário */
+        }
+
+        .forgot-password-link {
+            text-align: right;
+        }
+
+        .subtitle {
+            font-size: larger;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="split left">
+        <div class="container">
+            <form method="post" action="{% url 'account_login' %}" class="form-signin">
+                {% csrf_token %}
+                <h2 class="form-signin-heading">{% trans "Login" %}</h2>
+                <p class="subtitle">{% trans "Insira suas credenciais para acessar sua conta" %}</p>
+                
+                <br>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">{% trans "Email" %}</label>
+                </div>
+                <br>
+                <div class="mb-3">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required autofocus>
+                </div>
+
+                <br>
+
+                <div class="mb-3 form-group">
+                    <label for="inputPassword" class="form-label">{% trans "Senha" %}</label>
+                    <div class="forgot-password-link">
+                        <a href="#" class="float-end">{% trans "Esqueci minha senha" %}</a>
+                    </div>
+                </div>
+                
+                <br>
+
+                <div class="mb-3">
+                    <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Enter your password" required>
+                </div>
+
+                <br>
+                
+
+                <button class="btn btn-lg btn-primary btn-block w-100" style="color: #fff;" type="submit">{% trans "Login" %}</button>
+
+                <br>
+                <br>
+
+                <hr class="my-4">
+
+ 
+            </form>
+            <p class="mt-3" style="text-align: center;">
+                {% blocktrans %}Não possui conta? <a href="{{ signup_url }}">Cadastre-se</a>{% endblocktrans %}
+            </p>                       
+            {% if SOCIALACCOUNT_ENABLED %}
+                {% include "socialaccount/snippets/login.html" %}
             {% endif %}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" tags="prominent,login" %}
-                {% trans "Sign In" %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
-{% endblock content %}
+        </div>
+    </div>
+
+    <div class="split right">
+        <div class="centered slideshow">
+            <img src="{% static 'media/aju1.png' %}" alt="Slide 1" class="slide active">
+            <img src="{% static 'media/aju2.png' %}" alt="Slide 2" class="slide">
+            <img src="{% static 'media/aju3.png' %}" alt="Slide 3" class="slide">
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showNextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(showNextSlide, 4000);
+    </script>
+</body>
+</html>
