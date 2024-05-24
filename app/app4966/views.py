@@ -9,6 +9,7 @@ from django.conf import settings
 from .utils import (
     enviaPrompt,
     enviaPromptPreview,
+    enviaPromptSCI,
     armazenaTabelaChats
 )
 
