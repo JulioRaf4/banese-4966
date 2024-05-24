@@ -28,6 +28,9 @@
 
                 <!-- Campo oculto para armazenar o valor do textarea -->
                 <input type="hidden" name="entrada" id="hidden-prompt" value="True">
+                <!-- Botão de download -->
+                <button type="button" class="btn-download btn-gerar" onclick="downloadJSON()">Baixar JSON</button>
+                
                 <!-- Campo oculto para armazenar o valor do textarea -->
                 <button class="btn-gerar" type="submit" onclick="copyTextareaValue()">Gerar</button>
             </div>
@@ -38,8 +41,6 @@
             <textarea class="input-box" name="prompt" placeholder="Informe o Json para realizar o preview dos dados...">{{ prompt_value }}</textarea>
             <textarea readonly class="output-box" id="output-box">{{ response }}</textarea>
             <button class="btn-gerar btn-preview" type="submit">Enviar preview</button>
-            <!-- Botão de download -->
-            <button type="button" class="btn-download btn-gerar" onclick="downloadJSON()">Baixar JSON</button>
         </form>
     </section>
     <div>
