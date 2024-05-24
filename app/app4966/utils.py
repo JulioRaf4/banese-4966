@@ -64,7 +64,7 @@ def enviaPromptSCI(prompt, entrada):
     """
     ...
 
-def armazenaReqResponse(prompt, response):
+def armazenaTabelaChats(prompt, response):
     """Função para armazenar a request e a response no banco de dados"""
     try:
         client = MongoClient(settings.MONGODB_URI)
@@ -80,5 +80,6 @@ def armazenaReqResponse(prompt, response):
 
     except Exception as e:
         print(e)
+
 
     

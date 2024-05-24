@@ -9,7 +9,7 @@ from django.conf import settings
 from .utils import (
     enviaPrompt,
     enviaPromptPreview,
-    armazenaReqResponse
+    armazenaTabelaChats
 )
 
 def index(request):
@@ -44,7 +44,7 @@ def teste_api(request):
             prompt = request.POST["prompt"]
             response = "teste quinta"
             
-            armazenaReqResponse(prompt=prompt, response=response)
+            armazenaTabelaChats(prompt=prompt, response=response)
 
             return render(request, "app4966/example.html", {"response": response})
 
