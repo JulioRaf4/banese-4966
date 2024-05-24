@@ -1,10 +1,13 @@
 /* Google Font Link */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
-/* * {
-  margin: 0;
-  padding: 0;
-} */
+* {
+  font-weight: 600;
+} 
+
+a {
+  color: #fff;
+}
 
 .sidebar {
   box-sizing: border-box;
@@ -13,10 +16,11 @@
   top: 0;
   height: 100%;
   width: 78px;
-  background: #ffffff;
+  background-color: rgba(10, 110, 70, 1);
   padding: 6px 14px;
   z-index: 99;
   transition: all 0.5s ease;
+  color: rgb(255, 255, 255);
 }
 
 .sidebar.open {
@@ -56,7 +60,6 @@
 }
 
 .sidebar i {
-  color: #256136;
   height: 60px;
   min-width: 50px;
   font-size: 28px;
@@ -85,7 +88,6 @@
   padding: 6px 12px;
   border-radius: 4px;
   font-size: 15px;
-  font-weight: 400;
   opacity: 0;
   white-space: nowrap;
   pointer-events: none;
@@ -108,7 +110,6 @@
 .sidebar input {
   font-size: 15px;
   color: #fff;
-  font-weight: 400;
   outline: none;
   height: 55px;
   width: 100%;
@@ -158,9 +159,7 @@
 }
 
 .sidebar li a .links_name {
-  color: #256136;
   font-size: 15px;
-  font-weight: 400;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
@@ -207,7 +206,6 @@
 }
 
 .sidebar .nav-list li .sub-menu li a {
-  color: #256136;
   text-decoration: none;
   display: block;
   padding: 10px 0;

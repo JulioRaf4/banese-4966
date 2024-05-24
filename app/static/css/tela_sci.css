@@ -42,6 +42,12 @@
   font-size: 16px; 
 }
 
+  font-size: 16px;
+  width: 200px;
+  height: 45px;
+  border-radius: 15px;
+}
+
 .btn-preview {
   position: absolute;
   top: 100%;
@@ -75,7 +81,7 @@
   padding: .375rem .75rem;
   min-height: calc(1.5em +(.75rem + 2px));
   font-size: 18px;
-  resize: none; /* Desabilita a redimensionamento manual */
+  resize: none;
 }
 
 .input-box {
@@ -164,3 +170,4 @@
   font-size: 18px;
   opacity: 1;
 }
+
