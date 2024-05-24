@@ -2,6 +2,10 @@ import json
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from .models import Chat
+import datetime
+from pymongo import MongoClient
+from django.conf import settings
 
 from .utils import (
     enviaPrompt,
@@ -51,7 +55,6 @@ def sci_historico(request):
 
 def chat_historico(request): 
     return render(request, "app4966/chat_historico.html")
-
 
 def teste_api(request):
     if request.method == "POST":

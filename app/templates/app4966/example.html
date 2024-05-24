@@ -62,7 +62,7 @@
 </head>
 <body>
     <div id="container">
-        <form id="promptForm" method="post" action="{% url 'teste_api' %}">
+        <form id="promptForm" method="post">
             {% csrf_token %}
             <label for="prompt">Digite seu prompt:</label>
             <textarea id="prompt" name="prompt" required rows="10"></textarea>

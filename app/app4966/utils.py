@@ -80,4 +80,3 @@ def armazenaTabelaChats(prompt, response):
 
     except Exception as e:
         print(e)
-    
