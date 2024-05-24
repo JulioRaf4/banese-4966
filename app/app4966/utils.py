@@ -69,7 +69,7 @@ def armazenaReqResponse(prompt, response):
     try:
         client = MongoClient(settings.MONGODB_URI)
         db = client[settings.MONGODB_DATABASE]
-        collection = db[settings.MONGODB_COLLECTION]
+        collection = db["chats"]
 
         collection.insert_one({
             "prompt": prompt,
