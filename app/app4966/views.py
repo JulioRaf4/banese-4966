@@ -6,7 +6,8 @@ from django.views.decorators.csrf import csrf_exempt
 from .utils import (
     enviaPrompt,
     enviaPromptPreview,
-    enviaPromptSCI
+    enviaPromptSCI,
+    armazenaTabelaChats
 )
 
 def index(request):
@@ -56,7 +57,10 @@ def teste_api(request):
     if request.method == "POST":
         try:
             prompt = request.POST["prompt"]
-            response = enviaPrompt(prompt)
+            response = "teste quinta"
+            
+            armazenaTabelaChats(prompt=prompt, response=response)
+
             return render(request, "app4966/example.html", {"response": response})
 
         except Exception as e:
