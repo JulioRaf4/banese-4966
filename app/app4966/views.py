@@ -25,6 +25,9 @@ def sci(request):
                 "prompt_value": prompt_value,
                 "response": response
             }
+            chat = Chat_provisionamento(prompt=prompt_value, response=response)
+            chat.armazenaReqResponse()
+
             return render(request, "app4966/sci.html", context)
         
         else:
@@ -34,6 +37,9 @@ def sci(request):
                 "prompt_value": prompt_value,
                 "response": response
             }
+            chat = Chat_provisionamento(prompt=prompt_value, response=response)
+            chat.armazenaReqResponse()
+
             return render(request, "app4966/sci.html", context)
     
     return render(request, "app4966/sci.html")
