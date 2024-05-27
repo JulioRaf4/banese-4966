@@ -1,11 +1,9 @@
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
-from .models import Chat
 from django.http import JsonResponse
 from django.conf import settings
 import datetime
-from pymongo import MongoClient
 
 load_dotenv()
 
@@ -64,19 +62,13 @@ def enviaPromptSCI(prompt, entrada):
     """
     ...
 
-def armazenaTabelaChats(prompt, response):
-    """Função para armazenar a request e a response no banco de dados"""
-    try:
-        client = MongoClient(settings.MONGODB_URI)
-        db = client[settings.MONGODB_DATABASE]
-        collection = db["chats"]
 
-        collection.insert_one({
-            "prompt": prompt,
-            "response": response,
-            "timestamp": datetime.datetime.now()
-        })
-        print(JsonResponse({'status': 'success', 'message': 'Prompt armazenado com sucesso'}))
+# def armazenaReqResponse(prompt, response):
+#     """Função para armazenar a request e a response no banco de dados"""
+#     try:
+#         chat_instance = Chat(prompt=prompt, response=response)
+#         chat_instance.save(using="mongodb")
+#         print(JsonResponse({'status': 'success', 'message': 'Prompt armazenado com sucesso'}))
 
-    except Exception as e:
-        print(e)
+#     except Exception as e:
+#         print(e)
