@@ -40,11 +40,18 @@
 
         .right {
             right: 0;
-            background-color: transparent;
+            background-image: url('{% static "media/aju1.png" %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 25px;
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            top: 0;
         }
 
         .container {
@@ -66,7 +73,7 @@
             border-radius: 10px;
             padding: 10px;
             border-color: #0f141069;
-            width: 380px;
+            width: 100%;
         }
 
         .btn-primary {
@@ -75,14 +82,14 @@
             border-radius: 10px;
             padding: 10px;
             font-size: 1.2rem;
-            width: 400px;
+            width: 100%;
         }
 
         .btn-outline-secondary {
             border-radius: 10px;
             padding: 10px;
             font-size: 1rem;
-            width: 400px;
+            width: 100%;
         }
 
         .text-muted {
@@ -98,24 +105,6 @@
             text-decoration: underline;
         }
 
-        .slideshow {
-            max-width: 100%;
-            height: auto;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .slide {
-            display: none;
-            overflow: hidden;
-        }
-
-        .slide.active {
-            display: block;
-        }
-
         .form-group {
             display: flex;
             justify-content: space-between;
@@ -129,6 +118,29 @@
 
         .subtitle {
             font-size: larger;
+        }
+
+        @media screen and (max-width: 768px) {
+            .split {
+                width: 100%;
+                height: 50%;
+                position: relative;
+            }
+
+            .left, .right {
+                width: 100%;
+                height: 50%;
+                position: relative;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 10px;
+            }
+
+            .form-control, .btn-primary, .btn-outline-secondary {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -184,22 +196,20 @@
         </div>
     </div>
 
-    <div class="split right">
-        <div class="centered slideshow">
-            <img src="{% static 'media/aju1.png' %}" alt="Slide 1" class="slide active">
-            <img src="{% static 'media/aju2.png' %}" alt="Slide 2" class="slide">
-            <img src="{% static 'media/aju3.png' %}" alt="Slide 3" class="slide">
-        </div>
-    </div>
+    <div class="split right"></div>
 
     <script>
         let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
+        const slides = [
+            '{% static "media/aju1.png" %}',
+            '{% static "media/aju2.png" %}',
+            '{% static "media/aju3.png" %}'
+        ];
 
         function showNextSlide() {
-            slides[currentSlide].classList.remove('active');
+            const rightDiv = document.querySelector('.split.right');
+            rightDiv.style.backgroundImage = `url(${slides[currentSlide]})`;
             currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
         }
 
         setInterval(showNextSlide, 4000);
