@@ -17,6 +17,9 @@ from .utils import (
 def index(request):
     return render(request, "app4966/home.html")
 
+def chat(request):
+    return render(request, "base/chat.html")
+
 
 def sci_provisionamento(request):
     """Função para lidar com requisições HTTP para a página SCI.
