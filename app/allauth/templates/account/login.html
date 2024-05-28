@@ -51,6 +51,11 @@
             width: 50%;
             position: fixed;
             top: 0;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .fade-in {
+            transition: background-image 1s ease-in-out;
         }
 
         .container {
@@ -164,9 +169,6 @@
 
                 <div class="mb-3">
                     <label for="email" class="form-label">{% trans "Email" %}</label>
-                </div>
-                <br>
-                <div class="mb-3">
                     <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required autofocus>
                 </div>
 
@@ -203,7 +205,7 @@
         </div>
     </div>
 
-    <div class="split right" style="background-image: url('{% static "media/aju1.png" %}');"></div>
+    <div class="split right fade-in" style="background-image: url('{% static "media/aju1.png" %}');"></div>
 
     <script>
         let currentSlide = 0;
@@ -215,7 +217,10 @@
 
         function showNextSlide() {
             const rightDiv = document.querySelector('.split.right');
+            rightDiv.classList.remove('fade-in');
+            void rightDiv.offsetWidth; // trigger reflow
             rightDiv.style.backgroundImage = `url(${slides[currentSlide]})`;
+            rightDiv.classList.add('fade-in');
             currentSlide = (currentSlide + 1) % slides.length;
         }
 
