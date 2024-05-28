@@ -1,11 +1,9 @@
-import json
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Chat
-import datetime
-from pymongo import MongoClient
 from django.conf import settings
+from django_project.email import envia_emails
 
 from .utils import (
     enviaPrompt,
@@ -13,6 +11,7 @@ from .utils import (
     enviaPromptSCI,
     armazenaTabelaChats
 )
+
 
 def index(request):
     return render(request, "app4966/home.html")
@@ -28,41 +27,45 @@ def sci_provisionamento(request):
     context = {}
 
     if request.method == "POST":
-        print(request.POST)
         prompt_value = request.POST.get("prompt", "")
         entrada_value = request.POST.get("entrada", "")
 
         if not entrada_value:
+            assunto = "Assunto do Email"
+            mensagem = "Corpo da mensagem"
+            destinatarios = ["destinatario@example.com"]
+            envia_emails(assunto, mensagem, destinatarios)
+
             context["response"] = enviaPromptPreview(prompt_value)
         else:
             context["response"] = enviaPromptSCI(entrada_value)
-            print(context["response"])
+
         context["prompt_value"] = prompt_value
 
     return render(request, "app4966/sci.html", context)
 
 
-def sci_relatorio(request): 
+def sci_relatorio(request):
     return render(request, "app4966/sci_relatorio.html")
 
 
-def sci_historico(request): 
+def sci_historico(request):
     return render(request, "app4966/sci_historico.html")
 
 
-def chat_historico(request): 
+def chat_historico(request):
     return render(request, "app4966/chat_historico.html")
+
 
 def teste_api(request):
     if request.method == "POST":
         try:
             prompt = request.POST["prompt"]
             response = "teste quinta"
-            
+
             armazenaTabelaChats(prompt=prompt, response=response)
 
             return render(request, "app4966/example.html", {"response": response})
-
         except Exception as e:
             print(e)
 
