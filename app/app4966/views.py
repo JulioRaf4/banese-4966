@@ -35,11 +35,8 @@ def sci_provisionamento(request):
         if not entrada_value:
             context["response"] = enviaPromptPreview(prompt_value)
         else:
-            saida_value = request.POST.get("saida", "")
-            context["response"] = enviaPromptSCI(
-                entrada_value, entrada_value, saida_value
-            )
-
+            context["response"] = enviaPromptSCI(entrada_value)
+            print(context["response"])
         context["prompt_value"] = prompt_value
 
     return render(request, "app4966/sci.html", context)
