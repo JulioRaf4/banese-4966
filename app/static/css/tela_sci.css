@@ -33,10 +33,13 @@
   color: white;
   border: none;
   cursor: pointer;
-  font-size: 16px;
-  width: 200px;
-  height: 45px;
   border-radius: 15px;
+}
+
+.btn-download, .btn-gerar {
+  width: 320px; 
+  height: 45px; 
+  font-size: 16px; 
 }
 
 .btn-preview {
@@ -72,6 +75,7 @@
   padding: .375rem .75rem;
   min-height: calc(1.5em +(.75rem + 2px));
   font-size: 18px;
+  resize: none;
 }
 
 .input-box {
@@ -160,3 +164,4 @@
   font-size: 18px;
   opacity: 1;
 }
+

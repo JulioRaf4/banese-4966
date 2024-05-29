@@ -14,22 +14,17 @@
         <i class='bx bx-menu' id="btn"></i>
     </div>
     <ul class="nav-list">
-      <li>
-        <i class='bx bx-search'></i>
-        <input type="text" placeholder="Buscar">
-        <span class="tooltip">Buscar</span>
-      </li>
+
       <li>
         <div class="icon-links">
           <a href="#">
             <i class='bx bx-collection'></i>
-            <span class="links_name">Category <i class='bx bxs-chevron-down arrow'></i></span>
+            <span class="links_name">ChatGPT<i class='bx bxs-chevron-down arrow'></i></span>
             <span class="tooltip">Category</span>
           </a>
           <ul class="sub-menu">
-            <li class="submenu-item"><a href="{% url 'sci' %}">Submenu Item 1</a></li>
-            <li class="submenu-item"><a href="#">Submenu Item 1</a></li>
-            <li class="submenu-item"><a href="#">Submenu Item 1</a></li>
+            <li class="submenu-item"><a href="{% url 'teste_api' %}">Chat</a></li>
+            <li class="submenu-item"><a href="{% url 'chat_historico' %}">Histórico</a></li>
           </ul>
         </div>
       </li>
@@ -38,30 +33,15 @@
         <div class="icon-links">
             <a href="#">
                 <i class='bx bx-collection'></i>
-                <span class="links_name">Category <i class='bx bxs-chevron-down arrow'></i></span>
+                <span class="links_name">SCI <i class='bx bxs-chevron-down arrow'></i></span>
             </a>
             <ul class="sub-menu">
-                <li class="sub-menu-item"><a href="#">Submenu Item 1</a></li>
-                <li class="sub-menu-item"><a href="#">Submenu Item 2</a></li>
-                <li class="sub-menu-item"><a href="#">Submenu Item 3</a></li>
+                <li class="sub-menu-item"><a href="{% url 'sci_provisionamento' %}">Chat Provisionamento</a></li>
+                <li class="sub-menu-item"><a href="{% url 'sci_relatorio' %}">Chat Relatorio</a></li>
+                <li class="sub-menu-item"><a href="{% url 'sci_historico' %}">Histórico SCI</a></li>
             </ul>
         </div>
     </li>
-    
-    
-      <li>
-        <div class="icon-links">
-          <a href="#">
-            <i class='bx bx-collection'></i>
-            <span class="links_name">Category <i class='bx bxs-chevron-down arrow'></i></span>
-          </a>
-          <ul class="sub-menu">
-            <li><a href="#">Submenu Item 1</a></li>
-            <li><a href="#">Submenu Item 2</a></li>
-            <li><a href="#">Submenu Item 3</a></li>
-          </ul>
-        </div>
-      </li>
     </ul>
   </div>
   <section class="home-section">
