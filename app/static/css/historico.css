@@ -1,0 +1,145 @@
+.fundo-historico {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    height: calc(100vh - 70px); /* Ajuste de acordo com a altura do header */
+    position: relative;
+    z-index: 1; 
+}
+
+.historico-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente para ver a imagem de fundo */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 1000px;
+    z-index: 2; /* Garantir que esteja acima do fundo */
+    position: relative;
+}
+
+.historico-tabela {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.historico-tabela thead {
+    background-color: #eee;
+}
+
+.historico-tabela th, .historico-tabela td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.historico-tabela th {
+    font-weight: bold;
+}
+
+.historico-tabela td {
+    vertical-align: middle;
+}
+
+.historico-tabela img {
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .historico-container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .historico-tabela th, .historico-tabela td {
+        padding: 8px;
+    }
+
+    .historico-tabela {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .historico-container {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .historico-tabela th, .historico-tabela td {
+        padding: 5px;
+    }
+
+    .historico-tabela {
+        font-size: 12px;
+    }
+
+    .historico-tabela thead {
+        display: none; /* Oculta os cabeçalhos para telas muito pequenas */
+    }
+
+    .historico-tabela tr {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .historico-tabela td {
+        display: block;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .historico-tabela td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        text-align: left;
+        font-weight: bold;
+    }
+}
+
+/* historico.css */
+.search-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#searchInput {
+    width: 50px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: width 0.5s, padding 0.5s, box-shadow 0.5s;
+    background: url('../../static/media/search-icon.svg') no-repeat center;
+    background-size: 20px;
+    padding-left: 40px; /* Adjust for icon */
+    cursor: pointer;
+}
+
+.search-container:hover #searchInput,
+#searchInput:focus {
+    width: 80%;
+    padding: 10px 20px 10px 40px;
+    box-shadow: 0px 0px 10px rgba(62, 142, 208, 0.5);
+    cursor: text;
+    background: none;
+}
+
+#searchInput:focus {
+    border-color: #3e8ed0;
+    background: none;
+}
+
+

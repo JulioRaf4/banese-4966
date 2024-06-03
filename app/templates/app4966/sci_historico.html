@@ -1,21 +1,70 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>HISTORICO SCI</title>
-    </head>
-    <body>
-        {% include 'base/base.html' %}
-
-        
-        <div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/historico.css' %}">
+    <title>HISTORICO SCI</title>
+</head>
+<body>
+    {% include 'base/base.html' %}
+    <div class="fundo-historico">
+        <div class="historico-container">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for chats..">
+            </div>
+            <table class="historico-tabela">
+                <thead>
+                    <tr>
+                        <th>Chats</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody id="historicoTableBody">
+                    <tr>
+                        <td data-label="Chats">JSON testes para 4966</td>
+                        <td>31/05/2024 <a href="#"><img src="../../static/media/download.svg" alt="Download"></a> <a href="#"><img src="../../static/media/view.svg" alt="View"></a></td>                    
+                    </tr>
+                    <tr>
+                        <td data-label="Chats">JSON testes para 4966</td>
+                        <td>31/05/2024 <a href="#"><img src="../../static/media/download.svg" alt="Download"></a> <a href="#"><img src="../../static/media/view.svg" alt="View"></a></td>                    
+                    </tr>
+                    <tr>
+                        <td data-label="Chats"> testes para 4966</td>
+                        <td>31/05/2024 <a href="#"><img src="../../static/media/download.svg" alt="Download"></a> <a href="#"><img src="../../static/media/view.svg" alt="View"></a></td>                    
+                    </tr>
+                    <tr>
+                        <td data-label="Chats">JSON </td>
+                        <td>31/05/2024 <a href="#"><img src="../../static/media/download.svg" alt="Download"></a> <a href="#"><img src="../../static/media/view.svg" alt="View"></a></td>                    
+                    </tr>
+                </tbody>
+            </table>
         </div>
+    </div>
+</body>
+<script>
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        var input, filter, table, tr, td, i, j, txtValue;
+        input = document.getElementById('searchInput');
+        filter = input.value.toUpperCase();
+        table = document.querySelector('.historico-tabela');
+        tr = table.getElementsByTagName('tr');
 
-    </body>
-
-    <script>
-
-    </script>
+        for (i = 1; i < tr.length; i++) {
+            tr[i].style.display = 'none';
+            td = tr[i].getElementsByTagName('td');
+            for (j = 0; j < td.length; j++) {
+                if (td[j]) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = '';
+                        break;
+                    }
+                }
+            }
+        }
+    });
+</script>
 </html>
+
