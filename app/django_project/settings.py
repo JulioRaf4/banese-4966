@@ -105,9 +105,6 @@ DATABASES = {
     },
 }
 
-MONGODB_URI = "mongodb+srv://juliorafael:sm6IB3YBW7k5bnDk@cluster0.vvsbqik.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-MONGODB_DATABASE = "system_db"
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
