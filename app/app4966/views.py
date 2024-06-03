@@ -29,7 +29,8 @@ def sci_provisionamento(request):
     if request.method == "POST":
         if request.POST.get("entrada", "") == "":
             prompt_value = request.POST.get("prompt", "")
-            response = enviaPromptPreview(prompt_value)
+            # response = enviaPromptPreview(prompt_value)
+            response = "criou"
             context = {
                 "prompt_value": prompt_value,
                 "response": response
@@ -41,7 +42,8 @@ def sci_provisionamento(request):
         
         else:
             prompt_value = request.POST.get("prompt", "")
-            response = enviaPromptPreview(prompt_value)
+            # response = enviaPromptPreview(prompt_value)
+            response = "criou"
             context = {
                 "prompt_value": prompt_value,
                 "response": response

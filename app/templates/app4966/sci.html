@@ -28,6 +28,9 @@
 
                 <!-- Campo oculto para armazenar o valor do textarea -->
                 <input type="hidden" name="entrada" id="hidden-prompt" value="True">
+                
+                <input type="number" max="50" min="1" name="quantidade-json" id="quantidade-json" class="btn-gerar" placeholder="Quantidade de JSON">
+
                 <!-- Botão de download -->
                 <button type="button" class="btn-download btn-gerar" onclick="downloadJSON()">Baixar JSON</button>
                 
@@ -65,11 +68,17 @@
     function copyTextareaValue() {
         var textareaValue = document.querySelector('.input-box').value;
         document.getElementById('hidden-prompt').value = textareaValue;
+        var qtdeJson = document.getElementById('quantidade-json').value;
+        if (qtdeJson <= 50 && qtdeJson >= 1)
+            console.log(qtdeJson);
     }
 
     function downloadJSON() {
         // Obter o conteúdo do textarea onde a resposta está
         var content = document.getElementById('output-box').value;
+
+        // var qtdeJson = document.getElementById('quantidade-json').value;
+        // console.log(qtdeJson);
 
         // Verificar se o conteúdo não está vazio
         if (content.trim() === "") {
