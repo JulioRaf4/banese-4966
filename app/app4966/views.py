@@ -27,13 +27,17 @@ def sci_provisionamento(request):
     context = {}
 
     if request.method == "POST":
+        qtde_json = request.POST.get("quantidade-json", "")
+        print(request.POST)
         if request.POST.get("entrada", "") == "":
             prompt_value = request.POST.get("prompt", "")
-            # response = enviaPromptPreview(prompt_value)
-            response = "criou"
+            response = enviaPromptPreview(prompt_value, qtde_json)
+            print(prompt_value)
+            # response = "criou"
             context = {
                 "prompt_value": prompt_value,
-                "response": response
+                "response": response,
+                "quantidade_json": qtde_json
             }
             chat = Chat_provisionamento(prompt=prompt_value, response=response)
             chat.armazenaReqResponse()
@@ -41,12 +45,14 @@ def sci_provisionamento(request):
             return render(request, "app4966/sci.html", context)
         
         else:
-            prompt_value = request.POST.get("prompt", "")
-            # response = enviaPromptPreview(prompt_value)
-            response = "criou"
+            prompt_value = request.POST.get("entrada", "")
+            response = enviaPromptSCI(prompt_value, qtde_json)
+            print(prompt_value)
+            # response = "criou"
             context = {
                 "prompt_value": prompt_value,
-                "response": response
+                "response": response,
+                "quantidade_json": qtde_json
             }
             chat = Chat_provisionamento(prompt=prompt_value, response=response)
             chat.armazenaReqResponse()
