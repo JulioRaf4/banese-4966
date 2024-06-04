@@ -12,7 +12,7 @@
     <div class="fundo-historico">
         <div class="historico-container">
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search for chats..">
+                <input type="text" id="searchInput" placeholder="" >
             </div>
             <table class="historico-tabela">
                 <thead>
@@ -23,20 +23,8 @@
                 </thead>
                 <tbody id="historicoTableBody">
                     <tr>
-                        <td data-label="Chats">JSON testes para 4966</td>
-                        <td>31/05/2024 <a href="#"><img src="../../static/media/download.svg" alt="Download"></a> <a href="#"><img src="../../static/media/view.svg" alt="View"></a></td>                    
-                    </tr>
-                    <tr>
-                        <td data-label="Chats">JSON testes para 4966</td>
-                        <td>31/05/2024 <a href="#"><img src="../../static/media/download.svg" alt="Download"></a> <a href="#"><img src="../../static/media/view.svg" alt="View"></a></td>                    
-                    </tr>
-                    <tr>
-                        <td data-label="Chats"> testes para 4966</td>
-                        <td>31/05/2024 <a href="#"><img src="../../static/media/download.svg" alt="Download"></a> <a href="#"><img src="../../static/media/view.svg" alt="View"></a></td>                    
-                    </tr>
-                    <tr>
-                        <td data-label="Chats">JSON </td>
-                        <td>31/05/2024 <a href="#"><img src="../../static/media/download.svg" alt="Download"></a> <a href="#"><img src="../../static/media/view.svg" alt="View"></a></td>                    
+                        <td data-label="Chats">{nome: jv, apelido: raposo}</td>
+                        <td>31/05/2024 <a href="#"><img src="{% static 'media/download.svg' %}" alt="Download"></a> <a href="#"><img src="{% static 'media/view.svg' %}" alt="View"></a></td>                    
                     </tr>
                 </tbody>
             </table>
@@ -67,4 +55,3 @@
     });
 </script>
 </html>
-
