@@ -17,9 +17,6 @@ from .utils import (
 def index(request):
     return render(request, "app4966/home.html")
 
-def chat(request):
-    return render(request, "base/chat.html")
-
 
 def sci_provisionamento(request):
     """Função para lidar com requisições HTTP para a página SCI.
@@ -38,21 +35,16 @@ def sci_provisionamento(request):
                 "prompt_value": prompt_value,
                 "response": response
             }
-            chat = Chat_provisionamento(prompt=prompt_value, response=response)
-            chat.armazenaReqResponse()
 
             return render(request, "app4966/sci.html", context)
         
         else:
-            prompt_value = request.POST.get("prompt", "")
-            response = enviaPromptPreview(prompt_value)
+            prompt_value = request.POST.get("entrada", "")
+            response = enviaPromptSCI(prompt_value)
             context = {
                 "prompt_value": prompt_value,
                 "response": response
             }
-            chat = Chat_provisionamento(prompt=prompt_value, response=response)
-            chat.armazenaReqResponse()
-
             return render(request, "app4966/sci.html", context)
     
     return render(request, "app4966/sci.html")
@@ -70,17 +62,5 @@ def chat_historico(request):
     return render(request, "app4966/chat_historico.html")
 
 
-def teste_api(request):
-    if request.method == "POST":
-        try:
-            prompt = request.POST["prompt"]
-            response = "teste provisionamento"
-            
-            chat = Chat_provisionamento(prompt=prompt, response=response)
-
-
-            return render(request, "app4966/example.html", {"response": response})
-        except Exception as e:
-            print(e)
-
-    return render(request, "app4966/example.html")
+def chat_desenvolvedor(request):
+    return render(request, "app4966/chat_desenvolvedor.html")
