@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
+<html data-bs-theme="light" lang="pt-br">
 {% load static %}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Untitled</title>
+    <title>CHAT</title>
     
     <!-- BootStrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -23,6 +23,32 @@
     <style>
         .li {
             background-color: #fff;
+        }
+        .loading-dots-animation{
+            display: inline-flex;
+            padding-left: 25px ;
+        }
+        .loading-dots-animation .loading-dot{
+            background: var(--text-color);
+            height: 7px;
+            width: 7px;
+            border-radius: 50%;
+            margin: 0 3px;
+            opacity: 0.7;
+            animation: MakeLoadingAnimation 1.5s ease-in-out var(--delay) infinite;
+        }
+        
+        @keyframes MakeLoadingAnimation {
+            0%, 44% {
+                transform: translate(0px);
+            }
+            22%{
+                opacity: 0.4;
+                transform: translateY(-6px);
+            }
+            44% {
+                opacity: 0.2;
+            }
         }
     </style>
 </head>
@@ -71,12 +97,15 @@
             <!-- Botão de envio fixo -->
             <button id="fixed-button" class="btn btn-primary d-flex justify-content-center align-items-center" data-bss-hover-animate="pulse" type="button" style="background: rgba(67, 83, 52, 1);width: 75px;height: 55px;border-radius: 15px;margin-left: 10px;">
                 <img src="{% static 'media/paper-plane.png' %}" style="width: 23px;" width="23" height="25">
+                <span id="theme-btn" class="material-symbols-rounded">light_mode</span>
             </button>
         </div>
     </div>
     <style>
         #chat-container {
-            justify-content:flex-end;
+            justify-content:flex-end;   
+
+
         }
  
         
@@ -85,17 +114,31 @@
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/bs-init.js' %}"></script>
     <script>
-        // Função para manipular o clique nos botões
+        function TypingAnimation() {
+            const html = `<div class="chat-content-box">
+                            <div class="chat-details">
+                                <img src="https://i.ibb.co/0VDMm2X/chatbot.jpg" alt="chatbot-image">
+                                <div class="loading-dots-animation">
+                                    <div class="loading-dot" style="--delay:0.2s;"></div>
+                                    <div class="loading-dot" style="--delay:0.3s;"></div>
+                                    <div class="loading-dot" style="--delay:0.4s;"></div>
+                                </div>
+                            </div> 
+                            <span onclick="CopyResponses(this)" class="material-symbols-rounded">content_copy</span>
+                        </div>`;
+            return html;
+        }
+        
         function handleButtonClick(event) {
-            // Obter o botão clicado
+        
             var button = event.currentTarget;
-            // Obter o texto do botão clicado
+            
             var buttonText = button.querySelector('strong').textContent;
-            // Adicionar mensagem ao chat
+            
             addMessageToChat(buttonText);
-            // Enviar requisição ao servidor
+            
             sendRequest(buttonText);
-            // Remover todos os botões, exceto o botão fixo
+            
             var buttons = document.querySelectorAll('button');
             buttons.forEach(function(btn) {
                 if (!btn.id || btn.id !== 'fixed-button') {
@@ -104,31 +147,28 @@
             });
         }
 
-        // Função para manipular o envio do prompt pelo botão fixo
+        
         function handleFixedButtonClick() {
             const input = document.getElementById('prompt-input');
             const message = input.value.trim();
             if (message !== '') {
-                // Adicionar mensagem ao chat
+                
                 addMessageToChat(message);
-                // Enviar requisição ao servidor
+                
                 sendRequest(message);
-                // Limpar o campo de entrada
+                
                 input.value = '';
             }
         }
 
-        // Adicionar evento de clique a todos os botões, exceto o botão fixo
         document.querySelectorAll('button').forEach(function(button) {
             if (!button.id || button.id !== 'fixed-button') {
                 button.addEventListener('click', handleButtonClick);
             }
         });
 
-        // Adicionar evento de clique ao botão fixo
         document.getElementById('fixed-button').addEventListener('click', handleFixedButtonClick);
 
-        // Carregar chats salvos do localStorage ao carregar a página e limpar o conteúdo do chat
         document.addEventListener('DOMContentLoaded', () => {
             localStorage.removeItem('All-Chats');
             document.getElementById('chat-list').innerHTML = '';
@@ -138,21 +178,28 @@
             const chatList = document.getElementById('chat-list');
             const messageItem = document.createElement('li');
             messageItem.textContent = message;
-            messageItem.style.margin = '10px 0'; // Corrigido o estilo de margem
+            messageItem.style.margin = '10px 0'; 
             messageItem.style.padding = '10px';
             messageItem.style.borderRadius = '50px';
             messageItem.style.background = '#F5DEB3';
+            messageItem.style.boxShadow = '2px 2px 6px rgb(120,120,120)';
+            messageItem.style.textAlign = 'center';
+            messageItem.style.display = 'center';
+         
+           
+
             chatList.appendChild(messageItem);
 
-            // Rola o chat para o final
+            
+            
             const ChatContainer = document.getElementById('chat-container');
             ChatContainer.scrollTo(0, ChatContainer.scrollHeight);
 
-            // Armazena o chat no localStorage
+            
             localStorage.setItem("All-Chats", chatList.innerHTML);
         }
 
-        // Adiciona a resposta ao chat
+        
         async function sendRequest(message) {
             const Api_URL = "sk-proj-4svJX9Bc5LqJytHyCzMUT3BlbkFJEZsZlP0FSm2kP7yFGEF8";
             let PElement = document.createElement("p");
@@ -173,29 +220,38 @@
             };
 
             try {
-                // Faz a requisição para a API do OpenAI
+                
                 const Responses = await (await fetch(Api_URL, RequestOptions)).json();
                 PElement.textContent = Responses.choices[0].text.trim();
             } catch (error) {
                 PElement.classList.add("error");
                 PElement.innerText = "error ";
-            }
 
-            // Adiciona a resposta ao chat
+            }
+            
+            
+            
+
+            
             const chatList = document.getElementById('chat-list');
             const messageItem = document.createElement('li');
-            messageItem.style.margin = '5px ';
-            messageItem.style.padding = '4px';
+            messageItem.style.margin = '10px 0 ';
+            messageItem.style.padding = '5px';
             messageItem.style.borderRadius = '50px';
             messageItem.style.background = '#DEB887'; 
             messageItem.appendChild(PElement);
             chatList.appendChild(messageItem);
+            messageItem.style.boxShadow = '2px 2px 6px rgb(120,120,120)';
+            messageItem.style.textAlign = 'center';
+            messageItem.style.display = 'center';
+            messageItem.style.color = '#FF0000';
 
-            // Rola o chat para o final
+
+            
             const ChatContainer = document.getElementById('chat-container');
             ChatContainer.scrollTo(0, ChatContainer.scrollHeight);
 
-            // Armazena o chat no localStorage
+        
             localStorage.setItem("All-Chats", chatList.innerHTML);
         }
     </script>

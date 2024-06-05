@@ -1,4 +1,3 @@
-import json
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -6,12 +5,14 @@ from .models import *
 import datetime
 from pymongo import MongoClient
 from django.conf import settings
+from django_project.email import envia_emails
 
 from .utils import (
     enviaPrompt,
     enviaPromptPreview,
     enviaPromptSCI,
 )
+
 
 def index(request):
     return render(request, "app4966/home.html")
@@ -44,53 +45,33 @@ def sci_provisionamento(request):
                 "response": response,
                 "quantidade_json": qtde_json
             }
-            chat = Chat_provisionamento(prompt=prompt_value, response=response)
-            chat.armazenaReqResponse()
 
             return render(request, "app4966/sci.html", context)
         
         else:
             prompt_value = request.POST.get("entrada", "")
             response = enviaPromptSCI(prompt_value, qtde_json)
-            print(prompt_value)
-            # response = "criou"
             context = {
                 "prompt_value": prompt_value,
                 "response": response,
                 "quantidade_json": qtde_json
             }
-            chat = Chat_provisionamento(prompt=prompt_value, response=response)
-            chat.armazenaReqResponse()
-
             return render(request, "app4966/sci.html", context)
     
     return render(request, "app4966/sci.html")
 
 
-def sci_relatorio(request): 
+def sci_relatorio(request):
     return render(request, "app4966/sci_relatorio.html")
 
 
-def sci_historico(request): 
+def sci_historico(request):
     return render(request, "app4966/sci_historico.html")
 
 
-def chat_historico(request): 
+def chat_historico(request):
     return render(request, "app4966/chat_historico.html")
 
-  
-def teste_api(request):
-    if request.method == "POST":
-        try:
-            prompt = request.POST["prompt"]
-            response = "teste provisionamento"
-            
-            chat = Chat_provisionamento(prompt=prompt, response=response)
-            chat.armazenaReqResponse()
 
-            return render(request, "app4966/example.html", {"response": response})
-
-        except Exception as e:
-            print(e)
-
-    return render(request, "app4966/example.html")
+def chat_desenvolvedor(request):
+    return render(request, "app4966/chat_desenvolvedor.html")
