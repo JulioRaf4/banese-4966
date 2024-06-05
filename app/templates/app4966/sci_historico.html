@@ -1,21 +1,64 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>HISTORICO SCI</title>
-    </head>
-    <body>
-        {% include 'base/base.html' %}
-
-        
-        <div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/historico.css' %}">
+    <title>HISTORICO SCI</title>
+</head>
+<body>
+    {% include 'base/base.html' %}
+    <div class="fundo-historico">
+        <div class="historico-container">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar..." >
+            </div>
+            <table class="historico-tabela">
+                <thead>
+                    <tr>
+                        <th>Chats</th>
+                        <th>Data</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="historicoTableBody">
+                    <tr>
+                        <td data-label="Chats">{nome: jv, apelido: raposo}</td>
+                        <td data-label="Data">31/05/2024</td>
+                        <td class="alinhar-fotos" data-label="Ações">
+                            <a href="#"><img src="{% static 'media/download.svg' %}" alt="Download" title="Download"></a> 
+                            <a href="#"><img src="{% static 'media/view.svg' %}" alt="View" title="Visualizar"></a>
+                            <a href="#"><img src="{% static 'media/edit.svg' %}" alt="Editar" title="Editar"></a>
+                            <a href="#"><img src="{% static 'media/delete.svg' %}" alt="Deletar" title="Deletar"></a>
+                        </td>                    
+                    </tr>
+                </tbody>
+            </table>
         </div>
+    </div>
+</body>
+<script>
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        var input, filter, table, tr, td, i, j, txtValue;
+        input = document.getElementById('searchInput');
+        filter = input.value.toUpperCase();
+        table = document.querySelector('.historico-tabela');
+        tr = table.getElementsByTagName('tr');
 
-    </body>
-
-    <script>
-
-    </script>
+        for (i = 1; i < tr.length; i++) {
+            tr[i].style.display = 'none';
+            td = tr[i].getElementsByTagName('td');
+            for (j = 0; j < td.length; j++) {
+                if (td[j]) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = '';
+                        break;
+                    }
+                }
+            }
+        }
+    });
+</script>
 </html>
