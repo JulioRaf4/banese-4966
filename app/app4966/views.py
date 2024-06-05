@@ -1,23 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from django_project.email import envia_emails
 from .models import *
 import datetime
-from pymongo import MongoClient
 from django.conf import settings
-from django_project.email import envia_emails
 
-from .utils import (
-    enviaPrompt,
-    enviaPromptPreview,
-    enviaPromptSCI,
-)
+from .utils.open_ai import *
+from .utils.salvar_models import *
 
 
+@login_required
 def index(request):
     return render(request, "app4966/home.html")
 
 
+@login_required(redirect_field_name="index")
 def sci_provisionamento(request):
     """Função para lidar com requisições HTTP para a página SCI.
 
@@ -28,37 +27,32 @@ def sci_provisionamento(request):
     context = {}
 
     if request.method == "POST":
-        qtde_json = int(request.POST.get("quantidade-json", ""))
-        print(request.POST)
+        entrada = request.POST.get("entrada", "")
+        prompt_value = request.POST.get("prompt", "") if not entrada else entrada
+        qtde_json = request.POST.get("quantidade-json", "")
 
-        if not qtde_json:
-            context['error'] = "Por favor, selecione uma quantidade válida de JSONs."
-            return render(request, "app4966/sci.html", context)
-        
-        if request.POST.get("entrada", "") == "":
-            prompt_value = request.POST.get("prompt", "")
-            response = enviaPromptPreview(prompt_value, qtde_json)
-            print(prompt_value)
-            # response = "criou"
-            context = {
-                "prompt_value": prompt_value,
-                "response": response,
-                "quantidade_json": qtde_json
-            }
-
-            return render(request, "app4966/sci.html", context)
-        
+        if entrada:
+            if not qtde_json:
+                context["error"] = (
+                    "Por favor, selecione uma quantidade válida de JSONs."
+                )
+            else:
+                response = enviaPromptSCI(prompt_value, qtde_json)
+                context = {
+                    "prompt_value": prompt_value,
+                    "response": response,
+                    "quantidade_json": qtde_json,
+                }
+                salvar_chat_provisionamento(
+                    request.user, "SCI", prompt_value, response, qtde_json
+                )
         else:
-            prompt_value = request.POST.get("entrada", "")
-            response = enviaPromptSCI(prompt_value, qtde_json)
-            context = {
-                "prompt_value": prompt_value,
-                "response": response,
-                "quantidade_json": qtde_json
-            }
-            return render(request, "app4966/sci.html", context)
-    
-    return render(request, "app4966/sci.html")
+            response = enviaPromptPreview(prompt_value)
+
+            context = {"prompt_value": prompt_value, "response": response}
+            salvar_preview_provisionamento(prompt_value, response)
+
+    return render(request, "app4966/sci.html", context)
 
 
 def sci_relatorio(request):

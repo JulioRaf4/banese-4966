@@ -57,7 +57,7 @@ def enviaPromptPreview(prompt: str) -> str:
         raise ValueError(f"Erro ao enviar o prompt para o ChatGPT: {str(e)}")
 
 
-def enviaPromptSCI(entrada: str, qtde_json: int) -> str:
+def enviaPromptSCI(entrada: str, qtde_json: str) -> str:
     """Função para enviar prompt e criar Dados
     Envia também para a fila de provisionamento
     """
@@ -70,14 +70,14 @@ def enviaPromptSCI(entrada: str, qtde_json: int) -> str:
                     "role": "user",
                     "content": f"""
                     Crie {qtde_json} JSON(s) semelhante(s) a este, seguindo exatamente os campos presentes nele, 
-                    e respeitando os tipos, mas foque em mudar o conteudo dos campos para que que seja um Json com dados ficticio.
+                    e respeitando os tipos, mas foque em mudar o conteudo dos campos para que que seja um Json com dados ficticio
+                    Me dê apenas os json concatenados, só e somente os Jsons como resposta.
                     Json:
                     """
                     + entrada,
                 }
             ],
         )
-        print(response.choices[0].message.content.strip())
         return response.choices[0].message.content.strip()
 
     except Exception as e:
