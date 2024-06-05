@@ -82,16 +82,3 @@ def enviaPromptSCI(entrada: str) -> str:
         error_message = f"Erro ao enviar o prompt para o ChatGPT: {str(e)}"
         print(error_message) 
         raise ValueError(error_message)
-
-
-
-# def armazenaReqResponse(prompt, response):
-#     """Função para armazenar a request e a response no banco de dados"""
-#     try:
-#         chat_instance = Chat(prompt=prompt, response=response)
-#         chat_instance.save(using="mongodb")
-#         print(JsonResponse({'status': 'success', 'message': 'Prompt armazenado com sucesso'}))
-
-
-    except Exception as e:
-        print(e)
