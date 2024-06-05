@@ -27,8 +27,13 @@ def sci_provisionamento(request):
     context = {}
 
     if request.method == "POST":
-        qtde_json = request.POST.get("quantidade-json", "")
+        qtde_json = int(request.POST.get("quantidade-json", ""))
         print(request.POST)
+
+        if not qtde_json:
+            context['error'] = "Por favor, selecione uma quantidade válida de JSONs."
+            return render(request, "app4966/sci.html", context)
+        
         if request.POST.get("entrada", "") == "":
             prompt_value = request.POST.get("prompt", "")
             response = enviaPromptPreview(prompt_value, qtde_json)
