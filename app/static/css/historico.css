@@ -2,19 +2,19 @@
     display: flex;
     justify-content: center;
     align-items: start;
-    height: calc(100vh - 70px); /* Ajuste de acordo com a altura do header */
+    height: calc(100vh - 70px); 
     position: relative;
     z-index: 1; 
 }
 
 .historico-container {
-    background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente para ver a imagem de fundo */
+    background-color: rgba(255, 255, 255, 0.9); 
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 1000px;
-    z-index: 2; /* Garantir que esteja acima do fundo */
+    z-index: 2; 
     position: relative;
 }
 
@@ -42,13 +42,13 @@
 }
 
 .historico-tabela a img {
-    width: 25px; /* Aumenta a largura do ícone */
-    height: 25px; /* Aumenta a altura do ícone */
+    width: 25px; 
+    height: 25px; 
     margin-right: 10px;
     margin-top: 10px;
 }
 
-/* Media Queries for Responsiveness */
+
 @media (max-width: 768px) {
     .historico-container {
         width: 95%;
@@ -79,7 +79,7 @@
     }
 
     .historico-tabela thead {
-        display: none; /* Oculta os cabeçalhos para telas muito pequenas */
+        display: none; 
     }
 
     .historico-tabela tr {
@@ -116,15 +116,20 @@
     width: 50px;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #0a0606;
     border-radius: 25px;
     outline: none;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     transition: width 0.5s, padding 0.5s, box-shadow 0.5s;
-    background: url('../../static/media/search-icon.svg') no-repeat center;
+    background: url('../../static/media/search-icon.svg') no-repeat 15px center; 
     background-size: 20px;
-    padding-left: 40px; /* Adjust for icon */
+    padding-left: 40px; 
     cursor: pointer;
+}
+
+
+#searchInput::placeholder {
+    color: black;
 }
 
 .search-container:hover #searchInput,
@@ -139,4 +144,10 @@
 #searchInput:focus {
     border-color: #3e8ed0;
     background: none;
+}
+
+.alinhar-fotos {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
 }

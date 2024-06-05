@@ -12,7 +12,7 @@
     <div class="fundo-historico">
         <div class="historico-container">
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="" >
+                <input type="text" id="searchInput" placeholder="Buscar..." >
             </div>
             <table class="historico-tabela">
                 <thead>
@@ -24,7 +24,12 @@
                 <tbody id="historicoTableBody">
                     <tr>
                         <td data-label="Chats">{nome: jv, apelido: raposo}</td>
-                        <td>31/05/2024 <a href="#"><img src="{% static 'media/download.svg' %}" alt="Download"></a> <a href="#"><img src="{% static 'media/view.svg' %}" alt="View"></a></td>                    
+                        <td class="alinhar-fotos">31/05/2024 
+                            <a href="#"><img src="{% static 'media/download.svg' %}" alt="Download"></a> 
+                            <a href="#"><img src="{% static 'media/view.svg' %}" alt="View"></a>
+                            <a href="#"><img src="{% static 'media/edit.svg' %}" alt="Editar"></a>
+                            <a href="#"><img src="{% static 'media/delete.svg' %}" alt="Deletar"></a>
+                        </td>                    
                     </tr>
                 </tbody>
             </table>
