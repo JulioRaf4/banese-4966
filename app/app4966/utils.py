@@ -36,16 +36,17 @@ def enviaPromptPreview(prompt: str) -> str:
     """Função para receber preview do modelo do ChatGPT
     antes de realizar a criação dos dados para os testes
     """
-
     try:
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {
                     "role": "user",
-                    "content": """Crie um json semelhante a este, seguindo exatamente os campos presentes nele, 
+                    "content": f"""
+                    Crie 1 JSON semelhante a este, seguindo exatamente os campos presentes nele, 
                     e respeitando os tipos, mas foque em mudar o conteudo dos campos para que que seja um Json com dados ficticio.
-                    Json: """
+                    Json:
+                    """
                     + prompt,
                 }
             ],
@@ -56,7 +57,7 @@ def enviaPromptPreview(prompt: str) -> str:
         raise ValueError(f"Erro ao enviar o prompt para o ChatGPT: {str(e)}")
 
 
-def enviaPromptSCI(entrada: str) -> str:
+def enviaPromptSCI(entrada: str, qtde_json: int) -> str:
     """Função para enviar prompt e criar Dados
     Envia também para a fila de provisionamento
     """
@@ -67,10 +68,11 @@ def enviaPromptSCI(entrada: str) -> str:
             messages=[
                 {
                     "role": "user",
-                    "content": """Crie CINCO (5) json's semelhantes a este, seguindo exatamente os campos presentes nele, 
-                    e respeitando os tipos, mas foque em mudar o conteudo dos campos para que que seja os jsons sejam fictions.
-                    Me dê apenas os json concatenados, só e somente e o Json como resposta.
-                    Json: """
+                    "content": f"""
+                    Crie {qtde_json} JSON(s) semelhante(s) a este, seguindo exatamente os campos presentes nele, 
+                    e respeitando os tipos, mas foque em mudar o conteudo dos campos para que que seja um Json com dados ficticio.
+                    Json:
+                    """
                     + entrada,
                 }
             ],

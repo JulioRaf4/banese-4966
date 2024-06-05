@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/tela_sci.css' %}">
+
     <title>SCI</title>
 </head>
 <body>
@@ -28,6 +29,17 @@
 
                 <!-- Campo oculto para armazenar o valor do textarea -->
                 <input type="hidden" name="entrada" id="hidden-prompt" value="True">
+                
+                <select class="form-select" aria-label="Default select example" name="quantidade-json">
+                    <option value="" disabled selected>Selecione a quantidade de JSONs</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                </select>
+
                 <!-- Botão de download -->
                 <button type="button" class="btn-download btn-gerar" onclick="downloadJSON()">Baixar JSON</button>
                 
