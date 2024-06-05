@@ -19,7 +19,7 @@ class Conversa(models.Model):
         return reverse('conversa_detail', args=[str(self.id)])
 
 
-class PreviewProvisionamento(models.Model):
+class Preview_provisionamento(models.Model):
     sent = models.DateTimeField(auto_now_add=True, null=False)
     prompt = models.CharField(max_length=10000, null=False)
     chat_model = models.CharField(max_length=30, null=False)
@@ -35,7 +35,7 @@ class PreviewProvisionamento(models.Model):
         return reverse('preview_provisionamento_detail', args=[str(self.id)])
 
 
-class ChatDesenvolvedor(models.Model):
+class Chat_desenvolvedor(models.Model):
     descricao = models.CharField(max_length=100, null=False)
     created_at = models.DateTimeField(auto_now_add=True, null=False)
     updated_at = models.DateTimeField(auto_now=True, null=False)
@@ -55,18 +55,16 @@ class ChatDesenvolvedor(models.Model):
         return reverse('chat_desenvolvedor_detail', args=[str(self.id)])
 
 
-class ChatProvisionamento(models.Model):
-    user = models.OneToOneField(
-        User, related_name="chat_provisionamento", on_delete=models.CASCADE, null=True
+class Chat_provisionamento(models.Model):
+    user = models.ForeignKey(
+        User, related_name="chat_provisionamentos", on_delete=models.CASCADE, null=True
     )
     sent = models.DateTimeField(auto_now_add=True, null=False)
     sistema = models.CharField(max_length=100, null=False)
     prompt = models.CharField(max_length=10000, null=False)
     chat_model = models.CharField(max_length=30, null=False)
     response = models.CharField(max_length=100000, null=False)
-    preview = models.ForeignKey(
-        PreviewProvisionamento, on_delete=models.CASCADE, null=True
-    )
+    quantidade_json = models.CharField(max_length=100, null=False)
 
     class Meta:
         ordering = ["sent"]
@@ -78,7 +76,7 @@ class ChatProvisionamento(models.Model):
         return reverse('chat_provisionamento_detail', args=[str(self.id)])
 
 
-class ChatRelatorio(models.Model):
+class Chat_relatorio(models.Model):
     sistema = models.CharField(max_length=100, null=False)
     sent = models.DateTimeField(auto_now_add=True, null=False)
     user = models.OneToOneField(
