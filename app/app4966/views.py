@@ -62,9 +62,8 @@ def sci_relatorio(request):
 
 
 def sci_historico(request):
-    
-    return render(request, "app4966/sci_historico.html")
-
+    historicos = Chat_provisionamento.objects.all().order_by('-sent')
+    return render(request, "app4966/sci_historico.html", {'historicos': historicos})
 
 
 
