@@ -23,9 +23,10 @@
                     </tr>
                 </thead>
                 <tbody id="historicoTableBody">
+                    {% for historico in historicos %}
                     <tr>
-                        <td data-label="Chats">{nome: jv, apelido: raposo}</td>
-                        <td data-label="Data">31/05/2024</td>
+                        <td data-label="Chats">{{ historico.prompt }}</td>
+                        <td data-label="Data">{{ historico.sent|date:"d/m/Y" }}</td>
                         <td class="alinhar-fotos" data-label="Ações">
                             <a href="#"><img src="{% static 'media/download.svg' %}" alt="Download" title="Download"></a> 
                             <a href="#"><img src="{% static 'media/view.svg' %}" alt="View" title="Visualizar"></a>
@@ -33,6 +34,7 @@
                             <a href="#"><img src="{% static 'media/delete.svg' %}" alt="Deletar" title="Deletar"></a>
                         </td>                    
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

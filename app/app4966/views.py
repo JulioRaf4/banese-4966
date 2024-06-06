@@ -6,6 +6,8 @@ import datetime
 from pymongo import MongoClient
 from django.conf import settings
 from django_project.email import envia_emails
+from .models import ChatProvisionamento
+
 
 from .utils import (
     enviaPrompt,
@@ -55,7 +57,36 @@ def sci_relatorio(request):
 
 
 def sci_historico(request):
-    return render(request, "app4966/sci_historico.html")
+    # Verificar se as configurações do MongoDB estão definidas corretamente
+    try:
+        db_settings = settings.DATABASES['default']['CLIENT']
+    except KeyError:
+        raise KeyError("CLIENT settings not found in DATABASES configuration.")
+
+    # Conectar ao MongoDB
+    client = MongoClient(
+        host=db_settings['host'],
+        port=db_settings['port'],
+        username=db_settings['username'],
+        password=db_settings['password'],
+        authMechanism=db_settings['authMechanism']
+    )
+
+    # Selecionar o banco de dados
+    db = client['system_db']
+    # Selecionar a coleção correta
+    collection = db['chats_provisionamento']
+
+    # Buscar os dados na coleção
+    historicos = collection.find({}, {'prompt': 1, 'sent': 1})
+
+    # Converter os dados para uma lista
+    historicos_list = list(historicos)
+
+    # Renderizar o template com os dados
+    return render(request, 'app4966/sci_historico.html', {'historicos': historicos_list})
+
+
 
 
 def chat_historico(request):
