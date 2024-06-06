@@ -93,14 +93,14 @@ DATABASES = {
     },
     "mongodb": {
         "ENGINE": "djongo",
-        "NAME": "system_db",
+        "NAME": os.getenv("MONGO_NAME"),
         "ENFORCE_SCHEMA": False,
         "CLIENT": {
-            "host": "mongodb+srv://juliorafael:sm6IB3YBW7k5bnDk@cluster0.vvsbqik.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
-            "port": 27017,
-            "username": "juliorafael",
-            "password": "sm6IB3YBW7k5bnDk",
-            "authmechanism": "SCRAM-SHA-1",
+            "host": os.getenv("MONGO_HOST"),
+            "port": os.getenv("MONGO_PORT"),
+            "username": os.getenv("MONGO_USERNAME"),
+            "password": os.getenv("MONGO_PASSWORD"),
+            "authmechanism": os.getenv("MONGO_AUTHMECHANISM"),
         },
     },
 }
@@ -156,8 +156,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # Email settings
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'baneselabs1@gmail.com'
-EMAIL_HOST_PASSWORD = 'Mulamagica21'
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
