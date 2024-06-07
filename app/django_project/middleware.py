@@ -1,11 +1,12 @@
 import asyncio
+import os
 from azure.servicebus.aio import ServiceBusClient
 from azure.servicebus import ServiceBusMessage
 from azure.identity.aio import DefaultAzureCredential
 import logging
 
-NAMESPACE_CONNECTION_STR = "Endpoint=sb://julio4966.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=Z8o+3bBMIcnc7eANUPvOTg43h+qWUZsGs+ASbGe/fPg="
-QUEUE_NAME = "fila_teste_4966"
+NAMESPACE_CONNECTION_STR = os.getenv("NAMESPACE_CONNECTION_STR")
+QUEUE_NAME = os.getenv("QUEUE_NAME")
 
 
 async def send_single_message(sender, msg):
