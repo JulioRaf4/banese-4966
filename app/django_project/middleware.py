@@ -6,7 +6,7 @@ from azure.identity.aio import DefaultAzureCredential
 import logging
 
 NAMESPACE_CONNECTION_STR = os.getenv("NAMESPACE_CONNECTION_STR")
-QUEUE_NAME = "fila_teste_4966"
+QUEUE_NAME = os.getenv("QUEUE_NAME")
 
 
 async def send_single_message(sender, msg):
