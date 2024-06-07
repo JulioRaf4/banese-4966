@@ -3,6 +3,7 @@ from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django_project.email import envia_emails
+from django_project.middleware import *
 from .models import *
 import datetime
 from django.conf import settings
@@ -25,7 +26,7 @@ def sci_provisionamento(request):
     renderiza a página 'sci.html' com o contexto atualizado.
     """
     context = {}
-
+    
     if request.method == "POST":
         entrada = request.POST.get("entrada", "")
         prompt_value = request.POST.get("prompt", "") if not entrada else entrada
@@ -38,6 +39,7 @@ def sci_provisionamento(request):
                 )
             else:
                 response = enviaPromptSCI(prompt_value, qtde_json)
+                asyncio.run(send_messages(response))
                 context = {
                     "prompt_value": prompt_value,
                     "response": response,
