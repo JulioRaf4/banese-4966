@@ -9,6 +9,6 @@ urlpatterns = [
     path('sci_historico', view=sci_historico, name='sci_historico'),
     path('chat_historico', view=chat_historico, name='chat_historico'),
     path('chat', view=chat_desenvolvedor, name='chat_desenvolvedor'),
-    path('delete/<int:pk>/', sci_delete.as_view(), name='sci_delete'),
+    path('historico/delete/<int:pk>/', sci_delete.as_view(), name='sci_delete'),
 
     ]

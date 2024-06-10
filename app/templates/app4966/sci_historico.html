@@ -31,7 +31,12 @@
                             <a href="#"><img src="{% static 'media/download.svg' %}" alt="Download" title="Download"></a> 
                             <a href="#"><img src="{% static 'media/view.svg' %}" alt="View" title="Visualizar"></a>
                             <a href="#"><img src="{% static 'media/edit.svg' %}" alt="Editar" title="Editar"></a>
-                            <a href="{% url 'sci_delete' historico.id  %}"><img src="{% static 'media/delete.svg' %}" alt="Deletar" title="Deletar"></a>
+                            <form action="{% url 'sci_delete' historico.id %}" method="POST" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" onclick="return confirm('Você tem certeza que deseja deletar este item?');" style="background:none; border:none; padding:0;">
+                                    <img src="{% static 'media/delete.svg' %}" alt="Deletar" title="Deletar" style="width: 24px; height: 24px;">
+                                </button>
+                            </form>
                         </td>                    
                     </tr>
                     {% endfor %}

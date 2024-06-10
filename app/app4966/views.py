@@ -9,6 +9,7 @@ from django.conf import settings
 from django_project.email import envia_emails
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import DeleteView
+from django.urls import reverse_lazy
 
 
 from .utils.open_ai import *
@@ -70,6 +71,9 @@ def sci_historico(request):
 
 class sci_delete(SuccessMessageMixin, DeleteView):
     model = Chat_provisionamento
+    success_url = reverse_lazy('sci_historico')  # Redireciona para a lista de históricos após a exclusão
+    template_name = 'app4966/chat_confirm_delete.html'  # Template para a confirmação de exclusão
+
     
 
 
