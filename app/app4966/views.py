@@ -17,7 +17,7 @@ def index(request):
     return render(request, "app4966/home.html")
 
 
-@login_required(redirect_field_name="index")
+# @login_required(redirect_field_name="index")
 def sci_provisionamento(request):
     """Função para lidar com requisições HTTP para a página SCI.
 

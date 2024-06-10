@@ -1,21 +1,31 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Relatorio SCI</title>
-    </head>
-    <body>
-        {% include 'base/base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/tela_sci_relatorio.css' %}">
 
-        
-        <div>
-        </div>
-
-    </body>
-
-    <script>
-
-    </script>
+    <title>SCI RELATORIO</title>
+</head>
+<body>
+    {% include 'base/header.html' %}
+    {% include 'base/sidebar.html' %}
+    <div class="main-content">
+    <div class="h-section">
+        <h1 class="header">Tela de envio para fila de saída</h1>
+        <h2 class="header">E Criação de relatorios</h2>
+    </div>
+    <section class="fundo-div">
+        <form class="input-output" method="post" id="preview-form">
+            {% csrf_token %}
+            <textarea class="input-box" name="prompt" placeholder="Informe os dados para enviar para fila de saída..."></textarea>
+            <button class="btn-enviar" type="submit">Enviar preview</button>
+        </form>
+    </section>
+</div>
+    <div>
+        {% include 'base/background.html' %}
+    </div>
+</body>
 </html>
