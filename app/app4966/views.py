@@ -7,6 +7,8 @@ from .models import *
 import datetime
 from django.conf import settings
 from django_project.email import envia_emails
+from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic.edit import DeleteView
 
 
 from .utils.open_ai import *
@@ -65,6 +67,10 @@ def sci_historico(request):
     historicos = Chat_provisionamento.objects.all().order_by('-sent')
     return render(request, "app4966/sci_historico.html", {'historicos': historicos})
 
+
+class sci_delete(SuccessMessageMixin, DeleteView):
+    model = Chat_provisionamento
+    
 
 
 def chat_historico(request):
