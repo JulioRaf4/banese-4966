@@ -5,14 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/tela_sci_relatorio.css' %}">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <title>SCI RELATORIO</title>
 </head>
 <body>
     {% include 'base/header.html' %}
     {% include 'base/sidebar.html' %}
+
     <div class="main-content">
     <div class="h-section">
+        <div style="width: 80%; position: relative;">
+            {% include 'base/messages.html' %}
+        </div>
         <h1 class="header">Tela de envio para fila de saída</h1>
         <h2 class="header">E Criação de relatorios</h2>
     </div>
