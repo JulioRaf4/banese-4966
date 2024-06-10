@@ -12,7 +12,7 @@
     <div class="fundo-historico">
         <div class="historico-container">
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Buscar..." >
+                <input type="text" id="searchInput" placeholder="Buscar...">
             </div>
             <table class="historico-tabela">
                 <thead>
@@ -37,6 +37,7 @@
                     {% endfor %}
                 </tbody>
             </table>
+            <div id="paginationControls" class="pagination-controls"></div>
         </div>
     </div>
 </body>
@@ -62,5 +63,39 @@
             }
         }
     });
+
+    const rowsPerPage = 10;
+    let currentPage = 1;
+    const tableBody = document.getElementById('historicoTableBody');
+    const rows = tableBody.getElementsByTagName('tr');
+    const totalRows = rows.length;
+    const totalPages = Math.ceil(totalRows / rowsPerPage);
+
+    function showPage(page) {
+        currentPage = page;
+        const start = (page - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+
+        for (let i = 0; i < totalRows; i++) {
+            rows[i].style.display = i >= start && i < end ? '' : 'none';
+        }
+
+        document.getElementById('paginationControls').innerHTML = createPaginationControls(totalPages, currentPage);
+    }
+
+    function createPaginationControls(totalPages, currentPage) {
+        let controls = '';
+        for (let i = 1; i <= totalPages; i++) {
+            controls += `<button onclick="showPage(${i})" class="${i === currentPage ? 'active' : ''}">${i}</button>`;
+        }
+        return controls;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        showPage(currentPage);
+    });
+
+    window.showPage = showPage;
 </script>
 </html>
+
