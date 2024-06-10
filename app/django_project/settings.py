@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from dotenv import load_dotenv
+from django.contrib.messages import constants as messages
 
 # Carregue as variáveis de ambiente do arquivo .env
 load_dotenv()
@@ -78,6 +79,11 @@ TEMPLATES = [
         },
     },
 ]
+
+MESSAGE_TAGS = {
+    messages.SUCCESS: "alert-success",
+    messages.ERROR: "alert-danger",
+}
 
 WSGI_APPLICATION = "django_project.wsgi.application"
 
