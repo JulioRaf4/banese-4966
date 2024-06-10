@@ -58,42 +58,18 @@ def sci_provisionamento(request):
                 salvar_preview_provisionamento(prompt_value, response)
             messages.success(request, "Prompt enviado.")
         except Exception as e:
-            error_str = str(e)
-            json_start = error_str.find("{")
-            json_end = error_str.rfind("}") + 1
-            json_str = error_str[json_start:json_end]
-
-            json_str = json_str.replace("'", '"').replace("None", "null")
-
-            try:
-                error_dict = json.loads(json_str)
-                message = error_dict['error']['message']
-                messages.error(request, f"Erro. Prompt não enviado. {repr(message)}")
-            except json.JSONDecodeError as jde:
-                print("Erro. Prompt não enviado. Erro ao decodificar JSON. String JSON original:", json_str)
-            
-        
+            messages.error(request, f"Erro ao enviar mensagem para fila.")
+    
     return render(request, "app4966/sci.html", context)
 
 
 def sci_relatorio(request):
     if request.method == "POST":
         try:
-            messages.success(request, "Prompt enviado.")
+            print(request.method)
+            messages.success(request, "Mensagem enviada para a fila.")
         except Exception as e:
-            error_str = str(e)
-            json_start = error_str.find("{")
-            json_end = error_str.rfind("}") + 1
-            json_str = error_str[json_start:json_end]
-
-            json_str = json_str.replace("'", '"').replace("None", "null")
-
-            try:
-                error_dict = json.loads(json_str)
-                message = error_dict['error']['message']
-                messages.error(request, f"Erro. Prompt não enviado. {repr(message)}")
-            except json.JSONDecodeError as jde:
-                print("Erro. Prompt não enviado. Erro ao decodificar JSON. String JSON original:", json_str)
+            messages.error(request, f"Erro ao enviar mensagem para fila.")
 
     return render(request, "app4966/sci_relatorio.html")
 
