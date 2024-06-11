@@ -1,0 +1,97 @@
+/* Reset Global */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.main-content {
+  bottom: 30px;
+  position: relative;  
+}
+
+.h-section {
+  display: flex;
+  flex-direction: column;
+  left: 16rem;
+  position: relative;
+}
+
+.header {
+  color: #256136;
+  left: 100px;
+}
+
+.h-section h1 {
+  font-size: 35px;
+}
+
+.h-section h2 {
+  font-size: 30px;
+}
+
+.btn-enviar {
+  background-color: #256136;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+  position: absolute;
+  top: 100%;
+  width: 320px;
+  height: 45px;
+  font-size: 16px;
+}
+
+
+/* Layout Principal e Elementos de Entrada/Saída */
+.input-output {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 20px;
+}
+
+.input-box {
+  width: 65%;
+  height: 45rem;
+  border-radius: 10px;
+  border: 2px solid #256136;
+  padding: .375rem .75rem;
+  min-height: calc(1.5em +(.75rem + 2px));
+  font-size: 18px;
+  resize: none;
+}
+
+.input-box {
+  background-color: #FFF;
+}
+
+
+.button-drop img {
+  margin-left: 5px;
+  /* Ícone à direita do texto */
+  height: 20px;
+}
+
+
+/* Estilos de Fundo e Layout Principal */
+.fundo-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 1400px;
+  height: 800px;
+  background-color: transparent;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.input-box::placeholder {
+  color: #256136;
+  font-style: italic;
+  font-size: 18px;
+  opacity: 1;
+}

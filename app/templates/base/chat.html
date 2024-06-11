@@ -114,6 +114,8 @@
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/bs-init.js' %}"></script>
     <script>
+        require('dotenv').config();
+
         function TypingAnimation() {
             const html = `<div class="chat-content-box">
                             <div class="chat-details">
@@ -201,14 +203,14 @@
 
         
         async function sendRequest(message) {
-            const Api_URL = "sk-proj-4svJX9Bc5LqJytHyCzMUT3BlbkFJEZsZlP0FSm2kP7yFGEF8";
+            const Api_URL = process.env.API_URL;
             let PElement = document.createElement("p");
 
             const RequestOptions = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer YOUR_OPENAI_API_KEY` 
+                    'Authorization': process.env.OPENAI_API_KEY 
                 },
                 body: JSON.stringify({
                     "model": "text-davinci-003",

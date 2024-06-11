@@ -7,7 +7,7 @@ import datetime
 
 load_dotenv()
 
-client = OpenAI(api_key="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")
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 def enviaPrompt(prompt: str) -> str:
