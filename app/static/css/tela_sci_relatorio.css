@@ -15,11 +15,11 @@
   flex-direction: column;
   left: 16rem;
   position: relative;
+  margin-top: 6rem;
 }
 
 .header {
   color: #256136;
-  left: 100px;
 }
 
 .h-section h1 {
