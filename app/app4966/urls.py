@@ -9,4 +9,7 @@ urlpatterns = [
     path('sci_historico', view=sci_historico, name='sci_historico'),
     path('chat_historico', view=chat_historico, name='chat_historico'),
     path('chat', view=chat_desenvolvedor, name='chat_desenvolvedor'),
+    path('historico/edit/<int:pk>/', SciEditView.as_view(), name='sci_edit'),
+    path('historico/delete/<int:pk>/', sci_delete.as_view(), name='sci_delete'),
+
     ]

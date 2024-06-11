@@ -12,7 +12,7 @@
     <div class="fundo-historico">
         <div class="historico-container">
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Buscar..." >
+                <input type="text" id="searchInput" placeholder="Buscar...">
             </div>
             <table class="historico-tabela">
                 <thead>
@@ -23,42 +23,76 @@
                     </tr>
                 </thead>
                 <tbody id="historicoTableBody">
+                    {% for historico in historicos %}
                     <tr>
-                        <td data-label="Chats">{nome: jv, apelido: raposo}</td>
-                        <td data-label="Data">31/05/2024</td>
+                        <td data-label="Chats">{{ historico.prompt }}</td>
+                        <td data-label="Data">{{ historico.sent|date:"d/m/Y" }}</td>
                         <td class="alinhar-fotos" data-label="Ações">
-                            <a href="#"><img src="{% static 'media/download.svg' %}" alt="Download" title="Download"></a> 
                             <a href="#"><img src="{% static 'media/view.svg' %}" alt="View" title="Visualizar"></a>
-                            <a href="#"><img src="{% static 'media/edit.svg' %}" alt="Editar" title="Editar"></a>
-                            <a href="#"><img src="{% static 'media/delete.svg' %}" alt="Deletar" title="Deletar"></a>
+                            <button class="edit-btn" data-id="{{ historico.id }}" data-prompt="{{ historico.prompt }}" style="background:none; border:none; padding:0;">
+                                <img src="{% static 'media/edit.svg' %}" alt="Editar" title="Editar" class="icon">
+                            </button>
+                            <form action="{% url 'sci_delete' historico.id %}" method="POST" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" onclick="return confirm('Você tem certeza que deseja deletar este item?');" style="background:none; border:none; padding:0;">
+                                    <img src="{% static 'media/delete.svg' %}" alt="Deletar" title="Deletar" class="icon">
+                                </button>
+                            </form>
                         </td>                    
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
+            <div id="paginationControls" class="pagination-controls"></div>
         </div>
     </div>
-</body>
-<script>
-    document.getElementById('searchInput').addEventListener('keyup', function() {
-        var input, filter, table, tr, td, i, j, txtValue;
-        input = document.getElementById('searchInput');
-        filter = input.value.toUpperCase();
-        table = document.querySelector('.historico-tabela');
-        tr = table.getElementsByTagName('tr');
 
-        for (i = 1; i < tr.length; i++) {
-            tr[i].style.display = 'none';
-            td = tr[i].getElementsByTagName('td');
-            for (j = 0; j < td.length; j++) {
-                if (td[j]) {
-                    txtValue = td[j].textContent || td[j].innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = '';
-                        break;
-                    }
-                }
+    <!-- Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar Nome do Chat</h2>
+            <form id="editForm" method="post" action="">
+                {% csrf_token %}
+                <input type="hidden" name="id" id="editId">
+                <div>
+                    <label for="editPrompt">Nome do Chat</label>
+                    <input type="text" id="editPrompt" name="prompt">
+                </div>
+                <button type="submit">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal logic
+        const modal = document.getElementById('editModal');
+        const span = document.getElementsByClassName('close')[0];
+        const editBtns = document.getElementsByClassName('edit-btn');
+        const editForm = document.getElementById('editForm');
+        const editPromptInput = document.getElementById('editPrompt');
+        const editIdInput = document.getElementById('editId');
+
+        for (let btn of editBtns) {
+            btn.onclick = function() {
+                const id = this.getAttribute('data-id');
+                const prompt = this.getAttribute('data-prompt');
+                editPromptInput.value = prompt;
+                editIdInput.value = id;
+                editForm.action = "{% url 'sci_edit' 0 %}".replace('0', id);
+                modal.style.display = 'block';
+            };
+        }
+
+        span.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
             }
         }
-    });
-</script>
+    </script>
+</body>
 </html>
