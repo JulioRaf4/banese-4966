@@ -53,7 +53,6 @@ def sci_provisionamento(request):
                     )
             else:
                 response = enviaPromptPreview(prompt_value)
-
                 context = {"prompt_value": prompt_value, "response": response}
                 salvar_preview_provisionamento(prompt_value, response)
             messages.success(request, "Prompt enviado.")
@@ -66,7 +65,8 @@ def sci_provisionamento(request):
 def sci_relatorio(request):
     if request.method == "POST":
         try:
-            print(request.method)
+            response = request.POST.get("prompt", "")
+            #asyncio.run(send_messages(response))
             messages.success(request, "Mensagem enviada para a fila.")
         except Exception as e:
             messages.error(request, f"Erro ao enviar mensagem para fila.")
