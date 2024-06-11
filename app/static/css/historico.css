@@ -41,13 +41,16 @@
     vertical-align: middle;
 }
 
-.historico-tabela a img {
+.historico-tabela td.alinhar-fotos {
+    text-align: right; /* Alinha o conteúdo da célula à direita */
+}
+
+.historico-tabela a img, 
+.historico-tabela button img {
     width: 25px; 
     height: 25px; 
     margin-right: 10px;
-    margin-top: 10px;
 }
-
 
 @media (max-width: 768px) {
     .historico-container {
@@ -127,7 +130,6 @@
     cursor: pointer;
 }
 
-
 #searchInput::placeholder {
     color: black;
 }
@@ -146,11 +148,69 @@
     background: none;
 }
 
-.alinhar-fotos {
+.pagination-controls {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 20px; 
-    height: 63.5px;
+    justify-content: center;
+    margin: 20px 0;
 }
 
+.pagination-controls button {
+    background-color: #f1f1f1;
+    border: none;
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    margin: 0 4px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.pagination-controls button:hover {
+    background-color: #ddd;
+}
+
+.pagination-controls button.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
