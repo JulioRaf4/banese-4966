@@ -8,7 +8,7 @@ import datetime
 from django.conf import settings
 from django_project.email import envia_emails
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import DeleteView , UpdateView
 from django.urls import reverse_lazy
 
 
@@ -74,8 +74,15 @@ class sci_delete(SuccessMessageMixin, DeleteView):
     success_url = reverse_lazy('sci_historico')  # Redireciona para a lista de históricos após a exclusão
     template_name = 'app4966/chat_confirm_delete.html'  # Template para a confirmação de exclusão
 
-    
 
+class SciEditView(SuccessMessageMixin, UpdateView):
+    model = Chat_provisionamento
+    fields = ['prompt']  # Apenas o campo 'prompt' será editável
+    template_name = 'app4966/chat_edit_form.html'
+    success_url = reverse_lazy('sci_historico')
+    success_message = "Registro atualizado com sucesso!"
+
+    
 
 def chat_historico(request):
     return render(request, "app4966/chat_historico.html")

@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+  <h2>Editar Nome do Chat</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar</button>
+  </form>
+  <a href="{% url 'sci_historico' %}">Cancelar</a>
+{% endblock %}
