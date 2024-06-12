@@ -88,9 +88,9 @@ class sci_delete(SuccessMessageMixin, DeleteView):
     template_name = 'app4966/chat_confirm_delete.html'  # Template para a confirmação de exclusão
 
 
-class SciEditView(SuccessMessageMixin, UpdateView):
+class sci_update(SuccessMessageMixin, UpdateView):
     model = Chat_provisionamento
-    fields = ['prompt']  # Apenas o campo 'prompt' será editável
+    fields = ['descricao']  # Apenas o campo 'prompt' será editável
     template_name = 'app4966/chat_edit_form.html'
     success_url = reverse_lazy('sci_historico')
     success_message = "Registro atualizado com sucesso!"

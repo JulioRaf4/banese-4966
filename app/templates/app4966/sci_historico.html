@@ -17,7 +17,7 @@
             <table class="historico-tabela">
                 <thead>
                     <tr>
-                        <th>Chats</th>
+                        <th>Descrição</th>
                         <th>Sistema</th>
                         <th>Data</th>
                         <th></th>
@@ -26,7 +26,7 @@
                 <tbody id="historicoTableBody">
                     {% for historico in historicos %}
                     <tr>
-                        <td data-label="Chats">{{ historico.prompt }}</td>
+                        <td data-label="Chats">{{ historico.descricao }}</td>
                         <td data-label="Chats">{{ historico.sistema }}</td>
                         <td data-label="Data">{{ historico.sent|date:"d/m/Y" }}</td>
                         <td class="alinhar-fotos" data-label="Ações">

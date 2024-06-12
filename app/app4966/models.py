@@ -59,6 +59,7 @@ class Chat_provisionamento(models.Model):
     user = models.ForeignKey(
         User, related_name="chat_provisionamentos", on_delete=models.CASCADE, null=True
     )
+    descricao = models.CharField(max_length=100, null=True)
     sent = models.DateTimeField(auto_now_add=True, null=False)
     sistema = models.CharField(max_length=100, null=False)
     prompt = models.CharField(max_length=10000, null=False)
@@ -77,6 +78,7 @@ class Chat_provisionamento(models.Model):
 
 
 class Chat_relatorio(models.Model):
+    descricao = models.CharField(max_length=100, null=True)
     sistema = models.CharField(max_length=100, null=False)
     sent = models.DateTimeField(auto_now_add=True, null=False)
     user = models.OneToOneField(
