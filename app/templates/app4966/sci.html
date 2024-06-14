@@ -14,50 +14,53 @@
     <div style="width: 80%; left: 15rem; bottom: 20px; position: relative;">
         {% include 'base/messages.html' %}
     </div>
-    <section class="fundo-div">
-        <form class="div-dados" method="post" id="main-form">
-            {% csrf_token %}
-            <div class="dropdown">
-                <button class="button-drop" type="button" onclick="updateButtonText()">
-                    Dados <img src="{% static 'media/dropdown-svgrepo-com.svg' %}" alt="Dropdown" class="button-icon">
-                </button>
-                <div class="dropdown-content">
-                    <label><input type="checkbox" name="opcao1" onchange="updateButtonText()"> Opção 1</label>
-                    <label><input type="checkbox" name="opcao2" onchange="updateButtonText()"> Opção 2</label>
-                    <!-- Adicione mais opções de acordo com sua necessidade -->
+    <div class="container-section">
+        <section class="fundo-div">
+            <form class="div-dados" method="post" id="main-form">
+                {% csrf_token %}
+                <!-- <div class="dropdown">
+                    <button class="button-drop" type="button" onclick="updateButtonText()">
+                        Dados <img src="{% static 'media/dropdown-svgrepo-com.svg' %}" alt="Dropdown" class="button-icon">
+                    </button>
+                    <div class="dropdown-content">
+                        <label><input type="checkbox" name="opcao1" onchange="updateButtonText()"> Opção 1</label>
+                        <label><input type="checkbox" name="opcao2" onchange="updateButtonText()"> Opção 2</label>
+                    </div>
+                </div> -->
+                <!-- Botões no canto -->
+                <div class="button-group">
+    
+                    <!-- Campo oculto para armazenar o valor do textarea -->
+                    <input type="hidden" name="entrada" id="hidden-prompt" value="True">
+                    
+                    <select class="form-select" aria-label="Default select example" name="quantidade-json">
+                        <option value="" disabled selected>Selecione a quantidade de JSONs</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                    </select>
+    
+                    <!-- Botão de download -->
+                    <button type="button" class="btn-download btn-gerar" onclick="downloadJSON()">Baixar JSON</button>
+                    
+                    <!-- Campo oculto para arma zenar o valor do textarea -->
+                    <button class="btn-gerar" type="submit" onclick="copyTextareaValue()">Gerar</button>
                 </div>
-            </div>
-            <!-- Botões no canto -->
-            <div class="button-group">
-
-                <!-- Campo oculto para armazenar o valor do textarea -->
-                <input type="hidden" name="entrada" id="hidden-prompt" value="True">
-                
-                <select class="form-select" aria-label="Default select example" name="quantidade-json">
-                    <option value="" disabled selected>Selecione a quantidade de JSONs</option>
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
-                    <option value="40">40</option>
-                    <option value="50">50</option>
-                </select>
-
-                <!-- Botão de download -->
-                <button type="button" class="btn-download btn-gerar" onclick="downloadJSON()">Baixar JSON</button>
-                
-                <!-- Campo oculto para arma zenar o valor do textarea -->
-                <button class="btn-gerar" type="submit" onclick="copyTextareaValue()">Gerar</button>
-            </div>
-        </form>
-
-        <form class="input-output" method="post" id="preview-form">
-            {% csrf_token %}
-            <textarea class="input-box" name="prompt" placeholder="Informe o Json para realizar o preview dos dados...">{{ prompt_value }}</textarea>
-            <textarea readonly class="output-box" id="output-box">{{ response }}</textarea>
-            <button class="btn-gerar btn-preview" type="submit">Enviar preview</button>
-        </form>
-    </section>
+            </form>
+    
+            <form class="input-output" method="post" id="preview-form">
+                {% csrf_token %}
+                <textarea class="input-box" name="prompt" placeholder="Informe o Json para realizar o preview dos dados...">{{ prompt_value }}</textarea>
+                <textarea readonly class="output-box" id="output-box">{{ response }}</textarea>
+                <div class="botao-container">
+                    <button class="btn-gerar btn-preview" type="submit">Enviar preview</button>
+                </div>
+            </form>
+        </section>
+    </div>
     <div>
         {% include 'base/background.html' %}
     </div>
