@@ -17,7 +17,7 @@ from .utils.open_ai import *
 from .utils.salvar_models import *
 
 
-@login_required
+# @login_required
 def index(request):
     return render(request, "app4966/home.html")
 
