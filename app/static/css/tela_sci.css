@@ -48,6 +48,12 @@ html, body {
   font-size: 16px; 
 }
 
+.btn-download:hover, .btn-gerar:hover {
+  transform: scale(1.05);
+  transition: 0.25s;
+  background-color: #358a4d;
+}
+
 .btn-preview {
   position: relative;
   /* top: 100%; */
@@ -213,6 +219,10 @@ input[type=number] {
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
   appearance: none;
   text-align: center;
+}
+
+.form-select:hover {
+  cursor: pointer;
 }
 
 .botao-container {
