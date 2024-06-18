@@ -33,13 +33,19 @@
                 <tbody id="historicoTableBody">
                     {% for historico in historicos %}
                     <tr>
-                        <td data-label="Descrição">{{ historico.descricao }}</td>
+                        <td data-label="Descrição">
+                            <span class="descricao-text">{{ historico.descricao }}</span>
+                            <input type="text" class="descricao-input form-control" value="{{ historico.descricao }}" style="display:none;">
+                        </td>
                         <td data-label="Sistema">{{ historico.sistema }}</td>
                         <td data-label="Data">{{ historico.data|date:"d/m/Y" }}</td>
                         <td class="alinhar-fotos" data-label="Ações">
                             <a href="#"><img src="{% static 'media/view.svg' %}" alt="View" title="Visualizar"></a>
-                            <button class="edit-btn" data-id="{{ historico.id }}" data-descricao="{{ historico.descricao }}" style="background:none; border:none; padding:0;">
+                            <button class="edit-btn" data-id="{{ historico.id }}" style="background:none; border:none; padding:0;">
                                 <img src="{% static 'media/edit.svg' %}" alt="Editar" title="Editar" class="icon">
+                            </button>
+                            <button class="save-btn" data-id="{{ historico.id }}" style="background:none; border:none; padding:0; display:none;">
+                                <img src="{% static 'media/save.svg' %}" alt="Salvar" title="Salvar" class="icon">
                             </button>
                             <button class="delete-btn" data-id="{{ historico.id }}" style="background:none; border:none; padding:0;">
                                 <img src="{% static 'media/delete.svg' %}" alt="Deletar" title="Deletar" class="icon">
@@ -52,24 +58,6 @@
             <div id="paginationControls" class="pagination-controls"></div>
         </div>
     </div>
-
-    
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Editar Descrição do Histórico</h2>
-            <form id="editForm" method="post" action="">
-                {% csrf_token %}
-                <input type="hidden" name="id" id="editId">
-                <div>
-                    <label for="editDescription">Descrição</label>
-                    <input type="text" id="editDescription" name="descricao">
-                </div>
-                <button type="submit">Salvar</button>
-            </form>
-        </div>
-    </div>
-
     
     <div id="deleteModal" class="modal fade">
         <div class="modal-dialog modal-confirm">
@@ -93,53 +81,32 @@
     </div>
 
     <script>
-        
-        const editModal = document.getElementById('editModal');
-        const span = document.getElementsByClassName('close')[0];
-        const editBtns = document.getElementsByClassName('edit-btn');
-        const editForm = document.getElementById('editForm');
-        const editDescriptionInput = document.getElementById('editDescription');
-        const editIdInput = document.getElementById('editId');
-
-        for (let btn of editBtns) {
-            btn.onclick = function() {
-                const id = this.getAttribute('data-id');
-                const descricao = this.getAttribute('data-descricao');
-                editDescriptionInput.value = descricao;
-                editIdInput.value = id;
-                editForm.action = "{% url 'sci_edit' 0 %}".replace('0', id);
-                editModal.style.display = 'block';
-            };
-        }
-
-        span.onclick = function() {
-            editModal.style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            if (event.target == editModal) {
-                editModal.style.display = 'none';
-            }
-        }
-
-        
-        function openDeleteModal(id) {
-            $('#deleteModal').modal('show');
-            document.getElementById('confirmDeleteBtn').setAttribute('data-id', id);
-        }
-
-        function deleteRecord() {
-            const id = document.getElementById('confirmDeleteBtn').getAttribute('data-id');
-            const formAction = "{% url 'sci_delete' '0' %}".replace('0', id);
-            $.post(formAction, {
-                csrfmiddlewaretoken: '{{ csrf_token }}'
-            }).done(function() {
-                location.reload(); 
-            });
-        }
-
-        
         $(document).ready(function() {
+            $('.edit-btn').on('click', function() {
+                const row = $(this).closest('tr');
+                row.find('.descricao-text').hide();
+                row.find('.descricao-input').show();
+                row.find('.edit-btn').hide();
+                row.find('.save-btn').show();
+            });
+
+            $('.save-btn').on('click', function() {
+                const row = $(this).closest('tr');
+                const id = $(this).data('id');
+                const descricao = row.find('.descricao-input').val();
+                const formAction = "{% url 'sci_edit' 0 %}".replace('0', id);
+
+                $.post(formAction, {
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    descricao: descricao
+                }).done(function() {
+                    row.find('.descricao-text').text(descricao).show();
+                    row.find('.descricao-input').hide();
+                    row.find('.edit-btn').show();
+                    row.find('.save-btn').hide();
+                });
+            });
+
             $('.delete-btn').on('click', function() {
                 const itemId = $(this).data('id');
                 openDeleteModal(itemId);
@@ -148,6 +115,21 @@
             $('#confirmDeleteBtn').on('click', function() {
                 deleteRecord();
             });
+
+            function openDeleteModal(id) {
+                $('#deleteModal').modal('show');
+                document.getElementById('confirmDeleteBtn').setAttribute('data-id', id);
+            }
+
+            function deleteRecord() {
+                const id = document.getElementById('confirmDeleteBtn').getAttribute('data-id');
+                const formAction = "{% url 'sci_delete' '0' %}".replace('0', id);
+                $.post(formAction, {
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                }).done(function() {
+                    location.reload();
+                });
+            }
         });
     </script>
 </body>
