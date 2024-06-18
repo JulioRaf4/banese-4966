@@ -155,7 +155,7 @@
     margin: 20px 0;
 }
 
-.pagination-controls button {
+.pagination-controls a {
     background-color: #f1f1f1;
     border: none;
     color: black;
@@ -167,15 +167,18 @@
     transition: background-color 0.3s;
 }
 
-.pagination-controls button:hover {
+.pagination-controls a:hover {
     background-color: #ddd;
 }
 
-.pagination-controls button.active {
-    background-color: #4CAF50;
-    color: white;
+.pagination-controls span.current {
+    padding: 8px 16px;
 }
 
+.pagination-controls a.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
 
 .modal {
     display: none;
