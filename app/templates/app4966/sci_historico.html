@@ -96,7 +96,49 @@
 
     <script>
         $(document).ready(function() {
-            $('.edit-btn').on('click', function() {
+            $('#searchInput').on('input', function() {
+                const searchTerm = $(this).val();
+                if (searchTerm.length > 0) {
+                    $.ajax({
+                        url: "{% url 'buscar_historico' %}",
+                        type: "GET",
+                        data: {
+                            query: searchTerm
+                        },
+                        success: function(response) {
+                            $('#historicoTableBody').empty();
+                            response.forEach(function(item) {
+                                $('#historicoTableBody').append(`
+                                    <tr>
+                                        <td data-label="Descrição">
+                                            <span class="descricao-text">${item.descricao}</span>
+                                            <input type="text" class="descricao-input form-control" value="${item.descricao}" style="display:none;">
+                                        </td>
+                                        <td data-label="Sistema">${item.sistema}</td>
+                                        <td data-label="Data">${new Date(item.sent).toLocaleDateString('pt-BR')}</td>
+                                        <td class="alinhar-fotos" data-label="Ações">
+                                            <a href="#"><img src="{% static 'media/view.svg' %}" alt="View" title="Visualizar"></a>
+                                            <button class="edit-btn" data-id="${item.id}" style="background:none; border:none; padding:0;">
+                                                <img src="{% static 'media/edit.svg' %}" alt="Editar" title="Editar" class="icon">
+                                            </button>
+                                            <button class="save-btn" data-id="${item.id}" style="background:none; border:none; padding:0; display:none;">
+                                                <img src="{% static 'media/save.svg' %}" alt="Salvar" title="Salvar" class="icon">
+                                            </button>
+                                            <button class="delete-btn" data-id="${item.id}" style="background:none; border:none; padding:0;">
+                                                <img src="{% static 'media/delete.svg' %}" alt="Deletar" title="Deletar" class="icon">
+                                            </button>
+                                        </td>
+                                    </tr>
+                                `);
+                            });
+                        }
+                    });
+                } else {
+                    location.reload(); // Recarrega a página se o campo de busca estiver vazio
+                }
+            });
+
+            $(document).on('click', '.edit-btn', function() {
                 const row = $(this).closest('tr');
                 row.find('.descricao-text').hide();
                 row.find('.descricao-input').show();
@@ -104,7 +146,7 @@
                 row.find('.save-btn').show();
             });
 
-            $('.save-btn').on('click', function() {
+            $(document).on('click', '.save-btn', function() {
                 const row = $(this).closest('tr');
                 const id = $(this).data('id');
                 const descricao = row.find('.descricao-input').val();
@@ -121,7 +163,7 @@
                 });
             });
 
-            $('.delete-btn').on('click', function() {
+            $(document).on('click', '.delete-btn', function() {
                 const itemId = $(this).data('id');
                 openDeleteModal(itemId);
             });
@@ -148,3 +190,8 @@
     </script>
 </body>
 </html>
+
+
+
+
+

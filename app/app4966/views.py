@@ -85,6 +85,16 @@ def sci_historico(request):
     page_obj = paginator.get_page(page_number)
     return render(request, "app4966/sci_historico.html", {'page_obj': page_obj})
 
+def buscar_historico(request):
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest' and request.method == "GET":
+        query = request.GET.get('query', '')
+        historicos = Chat_provisionamento.objects.filter(
+            descricao__icontains=query
+        ).values('id', 'descricao', 'sistema', 'sent')
+        historicos_list = list(historicos)
+        return JsonResponse(historicos_list, safe=False)
+
+
 
 def historico_view(request):
     historicos = sci_historico.objects.all()
