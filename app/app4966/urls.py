@@ -11,5 +11,5 @@ urlpatterns = [
     path('chat', view=chat_desenvolvedor, name='chat_desenvolvedor'),
     path('historico/edit/<int:pk>/', sci_update.as_view(), name='sci_edit'),
     path('historico/delete/<int:pk>/', sci_delete.as_view(), name='sci_delete'),
-
+    path('buscar_historico/', buscar_historico, name='buscar_historico'),
     ]

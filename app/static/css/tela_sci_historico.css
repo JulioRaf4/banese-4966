@@ -43,7 +43,7 @@
 }
 
 .historico-tabela td.alinhar-fotos {
-    text-align: right; /* Alinha o conteúdo da célula à direita */
+    text-align: right; 
 }
 
 .historico-tabela a img, 
@@ -151,14 +151,14 @@
 
 .pagination-controls {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     margin: 20px 0;
 }
 
-.pagination-controls button {
-    background-color: #f1f1f1;
+.pagination-controls a {
+    background-color: #036103;
     border: none;
-    color: black;
+    color: rgb(247, 247, 247);
     padding: 8px 16px;
     text-decoration: none;
     margin: 0 4px;
@@ -167,15 +167,18 @@
     transition: background-color 0.3s;
 }
 
-.pagination-controls button:hover {
+.pagination-controls a:hover {
     background-color: #ddd;
 }
 
-.pagination-controls button.active {
-    background-color: #4CAF50;
-    color: white;
+.pagination-controls span.current {
+    padding: 8px 16px;
 }
 
+.pagination-controls a.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
 
 .modal {
     display: none;

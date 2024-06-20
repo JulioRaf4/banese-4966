@@ -15,6 +15,7 @@ from django.conf import settings
 from django_project.email import envia_emails
 from .utils.open_ai import *
 from .utils.salvar_models import *
+from django.core.paginator import Paginator
 
 
 # @login_required
@@ -79,8 +80,30 @@ def sci_relatorio(request):
 
 def sci_historico(request):
     historicos = Chat_provisionamento.objects.all().order_by('-sent')
-    return render(request, "app4966/sci_historico.html", {'historicos': historicos})
+    paginator = Paginator(historicos, 8)  # Mostra 8 itens por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, "app4966/sci_historico.html", {'page_obj': page_obj})
 
+def buscar_historico(request):
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest' and request.method == "GET":
+        query = request.GET.get('query', '')
+        historicos = Chat_provisionamento.objects.filter(
+            descricao__icontains=query
+        ).values('id', 'descricao', 'sistema', 'sent')
+        historicos_list = list(historicos)
+        return JsonResponse(historicos_list, safe=False)
+
+
+
+def historico_view(request):
+    historicos = sci_historico.objects.all()
+    paginator = Paginator(historicos, 8)  # Mostra 8 itens por página
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'template.html', {'page_obj': page_obj})
 
 class sci_delete(SuccessMessageMixin, DeleteView):
     model = Chat_provisionamento
