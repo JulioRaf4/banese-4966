@@ -41,28 +41,29 @@ def sci_provisionamento(request):
 
             if entrada:
                 if not qtde_json:
-                    context["error"] = (
-                        "Por favor, selecione uma quantidade válida de JSONs."
-                    )
+                    context["error"] = "Por favor, selecione uma quantidade válida de JSONs."
                 else:
                     response = enviaPromptSCI(prompt_value, qtde_json)
                     asyncio.run(send_messages(response))
+                    nome_do_chat = "Chat_" + prompt_value.split(':')[1].split(',')[0].strip().replace('"', '')
                     context = {
+                        "nome_do_chat": nome_do_chat,
                         "prompt_value": prompt_value,
                         "response": response,
                         "quantidade_json": qtde_json,
                     }
                     salvar_chat_provisionamento(
-                        request.user, "SCI", prompt_value, response, qtde_json
+                        request.user, nome_do_chat, prompt_value, response, qtde_json
                     )
             else:
                 response = enviaPromptPreview(prompt_value)
-                context = {"prompt_value": prompt_value, "response": response}
+                nome_do_chat = "Chat_" + prompt_value.split(':')[1].split(',')[0].strip().replace('"', '')
+                context = {"nome_do_chat": nome_do_chat, "prompt_value": prompt_value, "response": response}
                 salvar_preview_provisionamento(prompt_value, response)
-            messages.success(request, "Prompt enviado.")
+            messages.success(request, "Prompt enviado com sucesso.")
         except Exception as e:
-            messages.error(request, f"Erro ao enviar mensagem para fila.")
-    
+            messages.error(request, f"Erro ao enviar mensagem para fila: {e}")
+
     return render(request, "app4966/sci.html", context)
 
 

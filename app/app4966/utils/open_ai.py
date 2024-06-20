@@ -33,28 +33,34 @@ def enviaPrompt(prompt: str) -> str:
 
 
 def enviaPromptPreview(prompt: str) -> str:
-    """Função para receber preview do modelo do ChatGPT
+    """
+    Função para receber preview do modelo do ChatGPT
     antes de realizar a criação dos dados para os testes
+    e gera um nome para a conversa baseado no conteúdo do JSON enviado.
     """
     try:
+        nome_do_chat = "Chat_" + prompt.split(':')[1].split(',')[0].strip().replace('"', '')
+        
+        mensagem_completa = f"""
+        Crie 1 JSON semelhante a este, seguindo exatamente os campos presentes nele, 
+        e respeitando os tipos, mas foque em mudar o conteúdo dos campos para que seja um JSON com dados fictícios.
+        Json: {prompt}
+        """
+        
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {
                     "role": "user",
-                    "content": f"""
-                    Crie 1 JSON semelhante a este, seguindo exatamente os campos presentes nele, 
-                    e respeitando os tipos, mas foque em mudar o conteudo dos campos para que que seja um Json com dados ficticio.
-                    Json:
-                    """
-                    + prompt,
+                    "content": mensagem_completa,
                 }
             ],
         )
-        return response.choices[0].message.content.strip()
+        return f"Nome do chat: {nome_do_chat}\nResposta:\n" + response.choices[0].message.content.strip()
 
     except Exception as e:
         raise ValueError(f"Erro ao enviar o prompt para o ChatGPT: {str(e)}")
+
 
 
 def enviaPromptSCI(entrada: str, qtde_json: str) -> str:
