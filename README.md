@@ -1,58 +1,103 @@
-# Run Django with Docker Compose
+# Projeto Banese
 
-This repo contains code to spin up a boilerplate Django project with Docker Compose.
+Este é um projeto desenvolvido para o Banco do Estado Banese em conjunto com o Banese Labs, utilizando IA generativa para criar dados e enviá-los para filas de provisionamento e processamento. O projeto foi criado para seguir a normativa 4966 do Banco Central.
 
-It will be hosted locally using Gunicorn and Nginx containers.
+## Configuração do Ambiente
 
+### Executando o Código Localmente (Sem Docker)
 
-# Usage
+1. **Clone o repositório:**
+    ```bash
+    git clone https://github.com/seu-usuario/projeto-banese.git
+    cd projeto-banese
+    ```
 
-Run services in the background:
-`docker-compose up -d`
+2. **Crie e ative um ambiente virtual:**
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # No Windows, use `venv\Scripts\activate`
+    ```
 
-Run services in the foreground:
-`docker-compose up --build`
+3. **Instale as dependências:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Inspect volume:
-`docker volume ls`
-and
-`docker volume inspect <volume name>`
+4. **Realize as migrações do banco de dados:**
+    ```bash
+    python manage.py migrate
+    ```
 
-Prune unused volumes:
-`docker volume prune`
+5. **Execute o servidor de desenvolvimento:**
+    ```bash
+    python manage.py runserver
+    ```
 
-View networks:
-`docker network ls`
+### Executando o Código com Docker
 
-Bring services down:
-`docker-compose down`
+1. **Clone o repositório:**
+    ```bash
+    git clone https://github.com/seu-usuario/projeto-banese.git
+    cd projeto-banese
+    ```
 
-Open a bash session in a running container:
-`docker exec -it <container ID> /bin/bash`
+2. **Construa e inicie os containers Docker:**
+    ```bash
+    docker-compose up --build
+    ```
 
+3. **Acesse a aplicação em seu navegador:**
+    ```
+    http://localhost:8000
+    ```
 
-# Flow
+## Trabalho com Branches e Pull Requests
 
-1. The docker-compose yaml file will first spin up the Gunicorn container that will run the Django project at port 8000
+### Criando Branches
 
-2. The entrypoint to the *django_gunicorn* service is *entrypoint.sh*. This script will do a database migration and it will also collect the static files used by the Django project.
+Trabalhar com branches permite que você mantenha seu código organizado e seguro. Aqui está como criar uma nova branch:
 
-3. The static files will be collected in *STATIC_ROOT*. This is the */static* directory in the container.
+1. **Crie uma nova branch:**
+    ```bash
+    git checkout -b nome-da-sua-branch
+    ```
 
-4. This directory is mounted to a Docker volume on the local machine.
+2. **Faça as alterações desejadas no código.**
 
-5. The next container that will be spun is Nginx. The Dockerfile for this container is in the */nginx* folder. The Nginx configuration will interact with the Gunicorn service at port 8000 and it will also serve the static files in */static* also mounted to the same volume.
+3. **Adicione e commit suas alterações:**
+    ```bash
+    git add .
+    git commit -m "Descrição das suas alterações"
+    ```
 
+4. **Envie suas alterações para o repositório remoto:**
+    ```bash
+    git push origin nome-da-sua-branch
+    ```
 
-# Endpoints
+### Realizando Pull Requests
 
-* You will be able to reach the Django project at 0.0.0.0:80. This is the Nginx endpoint that interacts with Gunicorn at 0.0.0.0:8000
+Realizar pull requests (PR) é uma prática importante para garantir a qualidade e a integridade do código. Aqui está como você pode fazer isso:
 
-* To validate that the static files are being served correctly, you can visit 0.0.0.0:80/admin. This endpoint will show you the admin page with the correct style used.
-Gunicorn does not serve static files, so if you visit 0.0.0.0:8000/admin - the admin page will pop up without the default style.
+1. **Vá até o repositório no GitHub.**
 
+2. **Clique no botão "New Pull Request".**
 
+3. **Escolha a branch que você criou e clique em "Create Pull Request".**
 
-### Infrastructure model
+4. **Adicione uma descrição detalhada do que foi alterado e clique em "Create Pull Request".**
 
-![Infrastructure model](.infragenie/infrastructure_model.png)
+### Benefícios de Trabalhar com Branches e Pull Requests
+
+- **Isolamento de Funcionalidades:** Cada branch pode representar uma nova funcionalidade ou correção de bug, isolando as alterações e facilitando a gestão de versões.
+- **Revisão de Código:** As pull requests permitem que outros desenvolvedores revisem o código antes de ser mesclado na branch principal, melhorando a qualidade do código.
+- **Histórico de Alterações:** Mantém um histórico claro das alterações feitas, ajudando na documentação e rastreamento de mudanças.
+
+## Contribuições
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
+
+## Licença
+
+Este projeto é licenciado sob a licença MIT.
+
