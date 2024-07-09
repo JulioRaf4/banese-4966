@@ -1,6 +1,6 @@
 # Projeto Banese
 
-Este é um projeto desenvolvido para o Banco do Estado Banese em conjunto com o Banese Labs, utilizando IA generativa para criar dados e enviá-los para filas de provisionamento e processamento. O projeto foi criado para seguir a normativa 4966 do Banco Central.
+Este é um projeto desenvolvido para o Banco do Estado Banese em conjunto com o Banese Labs, utilizando IA generativa para criar dados e enviá-los para filas de provisionamento e processamento. O projeto foi criado para seguir a normativa 4966 do Banco Central e auxiliar na padronização referente aos testes de provisionamento.
 
 ## Configuração do Ambiente
 
