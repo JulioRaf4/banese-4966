@@ -1,100 +1,96 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{% static 'css/home.css' %}">
-        <title>Homepage</title>
-    </head>
-    <body>
-        {% include 'base/header.html' %}
-        {% include 'base/sidebar.html' %}
-        
-        <section class="banner-4966">
-            <div class="banner-esq">
-                <h1>IA aplicada à criação de casos de teste para a normativa 4966</h1>
-                <button class="banner-botao">
-                    <p class="banner-botao-texto">Como usar</p>
-                </button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <title>Homepage</title>
+  </head>
+  <body>
+    {% include 'base/header.html' %} {% include 'base/sidebar.html' %}
+
+    <section class="banner-4966">
+      <div class="banner-esq">
+        <h1>IA aplicada à criação de casos de teste para a normativa 4966</h1>
+        <button class="banner-botao">
+          <p class="banner-botao-texto">Como usar</p>
+        </button>
+      </div>
+      <div class="banner-dir">
+        <img src="../../static/media/fredy.png" alt="" class="img-fredy" />
+      </div>
+    </section>
+
+    <div class="gallery-wrap">
+      <img src="../../static/media/back.svg" id="backBtn" />
+      <div class="gallery">
+        <div class="gal-content">
+          <div class="card">
+            <a href="{% url 'sci_provisionamento' %}">
+              <div class="card-content">
+                <img class="gal-img" src="../../static/media/scir.svg" />
+                <p>Sistema de Credito Industrial e Rural</p>
+              </div>
+            </a>
+          </div>
+          <div class="card">
+            <div class="card-content">
+              <img class="gal-img" src="../../static/media/scc.svg" />
+              <p>Sistema de Conta Corrente</p>
             </div>
-            <div class="banner-dir">
-                <img src="../../static/media/fredy.png" alt="" class="img-fredy">
+          </div>
+          <div class="card">
+            <div class="card-content">
+              <img class="gal-img" src="../../static/media/cyber.svg" />
+              <p>Cyber Banking Core</p>
             </div>
-        </section>
-        
-        <div class="gallery-wrap">
-            <img src="../../static/media/back.svg" id="backBtn">
-            <div class="gallery">
-                <div class="gal-content">
-                    <div class="card">
-                        <a href="{% url 'sci_provisionamento' %}">
-                            <div class="card-content">
-                                <img class="gal-img" src="../../static/media/scir.svg">
-                                <p>Sistema de Credito Industrial e Rural</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <img class="gal-img" src="../../static/media/scc.svg">
-                            <p>Sistema de Conta Corrente</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <img class="gal-img" src="../../static/media/cyber.svg">
-                            <p>Cyber Banking Core</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <img class="gal-img" src="../../static/media/ccomercial.svg">
-                            <p>Sistema de Credito Comercial</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <img class="gal-img" src="../../static/media/mcf.svg">
-                            <p>MCF</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <img class="gal-img" src="../../static/media/imob.svg">
-                            <p>Sistema de Credito Imobiliario</p>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="card">
+            <div class="card-content">
+              <img class="gal-img" src="../../static/media/ccomercial.svg" />
+              <p>Sistema de Credito Comercial</p>
             </div>
-            <img src="../../static/media/next.svg" id="nextBtn">
+          </div>
+          <div class="card">
+            <div class="card-content">
+              <img class="gal-img" src="../../static/media/mcf.svg" />
+              <p>MCF</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-content">
+              <img class="gal-img" src="../../static/media/imob.svg" />
+              <p>Sistema de Credito Imobiliario</p>
+            </div>
+          </div>
         </div>
-        
-        <div>
-            {% include 'base/background.html' %}
-        </div>
+      </div>
+      <img src="../../static/media/next.svg" id="nextBtn" />
+    </div>
 
-    </body>
+    <div>{% include 'base/background.html' %}</div>
+  </body>
 
-    <script>
-        let scrollContainer = document.querySelector(".gallery");
-        let backBtn = document.getElementById("backBtn");
-        let nextBtn = document.getElementById("nextBtn");
-        
-        scrollContainer.addEventListener("wheel", (evt) => {
-            evt.preventDefault();
-            scrollContainer.scrollLeft += evt.deltaY;
-            scrollContainer.style.scrollBehavior = "auto";
-        })
+  <script>
+    let scrollContainer = document.querySelector(".gallery");
+    let backBtn = document.getElementById("backBtn");
+    let nextBtn = document.getElementById("nextBtn");
 
-        backBtn.addEventListener("click", () => {
-            scrollContainer.style.scrollBehavior = "smooth";
-            scrollContainer.scrollLeft -= 900;
-        });
+    scrollContainer.addEventListener("wheel", (evt) => {
+      evt.preventDefault();
+      scrollContainer.scrollLeft += evt.deltaY;
+      scrollContainer.style.scrollBehavior = "auto";
+    });
 
-        nextBtn.addEventListener("click", () => {
-            scrollContainer.style.scrollBehavior = "smooth";
-            scrollContainer.scrollLeft += 900;
-        });
-    </script>
+    backBtn.addEventListener("click", () => {
+      scrollContainer.style.scrollBehavior = "smooth";
+      scrollContainer.scrollLeft -= 900;
+    });
+
+    nextBtn.addEventListener("click", () => {
+      scrollContainer.style.scrollBehavior = "smooth";
+      scrollContainer.scrollLeft += 900;
+    });
+  </script>
 </html>
